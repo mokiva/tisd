@@ -5,6 +5,7 @@
 
 #include "defines.h"
 #include "funcs.h"
+#include "struct.h"
 
 int main(void)
 {
@@ -94,6 +95,14 @@ int main(void)
     }
 
     // TODO реализация
+    big_double first_digit;
+    big_double second_digit;
+
+    parse_sign(integer_digit, &first_digit);
+    parse_sign(double_digit, &second_digit);
+
+    printf("%c\n", first_digit.sign);
+    printf("%c\n", second_digit.sign);
 
     return OK;
 }

@@ -2,7 +2,8 @@
 #define __FUNCS_H__
 
 #include <stdio.h>
-#include <struct.h>
+
+#include "struct.h"
 
 // заголовок функции, реализующей ввод строки
 size_t input_str(char *buffer, size_t len);
@@ -22,7 +23,7 @@ size_t check_mantissa(char *buffer, size_t len);
 // заголовок функции, реализующей проверку нескольких нулей в начале целой части вещественного числа
 size_t check_zeros(char *buffer);
 
-// заголовок функции, парсящей строчное значение целого числа в структурный тип
-size_t parse_int(char *buffer, big_double value);
+// заголовок функции, парсящей знак числа в поле структуры
+void parse_sign(char *buffer, big_double *value);
 
 #endif  // __FUNCS_H__

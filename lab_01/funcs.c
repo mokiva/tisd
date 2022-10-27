@@ -3,6 +3,7 @@
 
 #include "funcs.h"
 #include "defines.h"
+#include "struct.h"
 
 // функция, реализуюащя ввод строки
 size_t input_str(char *buffer, size_t len)
@@ -165,11 +166,13 @@ size_t check_zeros(char *buffer)
     return flag;
 }
 
-// функция, парсящая строчное значение целого числа в структурный тип
-size_t parse_int(char *buffer, big_double *value)
+// функция, парсящей знак числа в поле структуры
+void parse_sign(char *buffer, big_double *value)
 {
     if (buffer[0] == '-')
-        
+       value -> sign = '-';
+    else
+        value -> sign = '+';
 }
 
 
