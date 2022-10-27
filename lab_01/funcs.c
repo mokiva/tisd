@@ -164,3 +164,29 @@ size_t check_zeros(char *buffer)
 
     return flag;
 }
+
+// функция, парсящая строчное значение целого числа в структурный тип
+size_t parse_int(char *buffer, big_double *value)
+{
+    if (buffer[0] == '-')
+        
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
