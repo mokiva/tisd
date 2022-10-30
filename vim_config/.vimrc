@@ -32,8 +32,11 @@ Plug 'morhetz/gruvbox'
 Plug 'Yggdroot/indentLine'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'preservim/nerdtree'
 call plug#end()
 
 let g:gruvbox_italic=1
 
 colorscheme gruvbox
+
+nmap <F4> :NERDTree<CR>

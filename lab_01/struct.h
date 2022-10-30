@@ -6,7 +6,8 @@
 struct big_double
 {
     char sign;
-    int order[MAX_ORDER_LEN];
+    int n_sign_value;
+    int order;
     int mantissa[MAX_MANT_LEN];
 };
 
