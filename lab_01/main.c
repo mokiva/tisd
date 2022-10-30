@@ -129,7 +129,17 @@ int main(void)
 
     int order = e_order + root_order;
 
-    printf("\n%d\n", root_order);
+    second_digit.order = order;
+
+    //printf("\n1. sign %c", first_digit.sign);
+    //printf("\n1. order %d\n", first_digit.order);
+    //print_array(first_digit.mantissa, 30);
+    //printf("1. n_sign_value %ld\n\n", first_digit.n_sign_value);
+
+    //printf("\n2. sign %c", second_digit.sign);
+    //printf("\n2. order %d\n", second_digit.order);
+    //print_array(second_digit.mantissa, 30);
+    //printf("2. n_sign_value %ld\n\n", second_digit.n_sign_value);
 
     return OK;
 }
