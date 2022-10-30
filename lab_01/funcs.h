@@ -26,14 +26,23 @@ size_t check_zeros(char *buffer);
 // заголовок функции, парсящей знак числа в поле структуры
 void parse_sign(char *buffer, big_double *value);
 
-// заголовок функции, заполняющей поле мантиссы в стуктуре
+// заголовок функции, заполняющей поле мантиссы целого числа в стуктуре
 void parse_mantissa_from_int(char *buffer, big_double *value, size_t mant_len);
 
 // заголовок функции, печатающей массив
 void print_array(int arr[], int len);
 
-// заголовок функции, заполняющей поле порядка в структуре
+// заголовок функции, заполняющей поле порядка целого числа в структуре
 void parse_order_from_int(big_double *value, size_t mant_len);
+
+// заголовок функции, заполняющей поле мантиссы вещественного числа в структуре
+void parse_mantissa_from_dbl(char *buffer, big_double *value, size_t mant_len);
+
+// заголовок функции, возвращающей порядок при e
+int parse_e_order(char *buffer, size_t len);
+
+// заголовок функции, возвращающей порядок действительной части числа
+int parse_root_order(char *buffer, size_t mant_len);
 
 #endif  // __FUNCS_H__
 

@@ -175,45 +175,155 @@ void parse_sign(char *buffer, big_double *value)
         value -> sign = '+';
 }
 
-// функция, заполняющая поле мантиссы в стуктуре
+// функция, заполняющая поле мантиссы в стуктуре для целого числа
 void parse_mantissa_from_int(char *buffer, big_double *value, size_t mant_len)
 {
     if (buffer[0] == '-')
     {
         for (size_t i = 0; i < mant_len; ++i)
-        {
             value -> mantissa[i] = buffer[i + 1] - '0';
-        }
     }
     else
     {
         for (size_t i = 0; i < mant_len; ++i)
-        {
             value -> mantissa[i] = buffer[i] - '0';
-        }
     }
 
     for (size_t i = mant_len; i < MAX_MANT_LEN; ++i)
-    {
         value -> mantissa[i] = 0;
-    }
 }
 
 // функция, печатающая массив
 void print_array(int arr[], int len)
 {
     for (int i = 0; i < len; ++i)
-    {
         printf("%d ", arr[i]);
-    }
+
     printf("\n");
 }
 
-// функция, заполняющая поле порядка в структуре
+// функция, заполняющая поле порядка целого числа в структуре
 void parse_order_from_int(big_double *value, size_t mant_len)
 {
-    value -> order = mant_len - 30;
+    value -> order = mant_len - MAX_MANT_LEN;
 }
+
+// функция, заполняющая поле мантиссы вещественного числа в структуре
+void parse_mantissa_from_dbl(char *buffer, big_double *value, size_t mant_len)
+{
+    int ch;
+    size_t i = 0;
+    size_t k = 0;
+    size_t flag = FALSE;
+
+    while (i < mant_len)
+    {
+        if ((ch = isdigit(buffer[k])) != 0 && buffer[k] != '0')
+            flag = TRUE;
+
+        if (flag && buffer[k] != '.')
+        {
+            value -> mantissa[i] = buffer[k] - '0';
+            ++i;
+        }
+
+        ++k;
+    }
+
+    for (size_t p = i; p < MAX_MANT_LEN; ++p)
+        value -> mantissa[p] = 0;
+}
+
+// функция, возвращающая порядок мантиссы при e
+int parse_e_order(char *buffer, size_t len)
+{
+    int order;
+    size_t order_index;
+    size_t index;
+    size_t flag = FALSE;
+    char order_string[MAX_ORDER_LEN + 1] = { '\0' };
+
+    for (size_t i = 0; i < len; ++i)
+    {
+        if (buffer[i] == 'e' || buffer[i] == 'E')
+        {
+            flag = TRUE;
+            index = i;
+        }
+    }
+
+    order_index = 0;
+
+    if (flag)
+    {
+        for (size_t i = index + 1; buffer[i] != '\0'; ++i)
+        {
+            order_string[order_index] = buffer[i];
+            ++order_index;
+        }
+
+        sscanf(order_string, "%d", &order);
+    }
+    else
+        order = 0;
+
+    return order;
+}
+
+// функция, возвращающая порядок действительной части числа
+int parse_root_order(char *buffer, size_t mant_len)
+{
+    int order = 0;
+    size_t count = 0;
+
+    for (size_t i = 0; buffer[i] != 'e' && buffer[i] != 'E' && buffer[i] != '\0'; ++i)
+    {
+        if (buffer[i] == '.')
+            break;
+
+        if (buffer[i] != '+' && buffer[i] != '-')
+            ++count;
+    }
+
+    order = count - MAX_MANT_LEN;
+
+    if ((buffer[0] == '+' || buffer[0] == '-') && buffer[1] == '0' && buffer[2] == '.')
+        order = -MAX_MANT_LEN;
+
+    if (buffer[0] == '0' && buffer[1] == '.')
+        order = -MAX_MANT_LEN;
+
+    if (order == -MAX_MANT_LEN)
+    {
+        size_t dot_flag = 0;
+        for (size_t i = 0; buffer[i] != 'e' && buffer[i] != 'E' && buffer[i] != '\0'; ++i)
+        {
+            if (buffer[i] == '.')
+            {
+                dot_flag = TRUE;
+                continue;
+            }
+
+            if (dot_flag && buffer[i] == '0')
+                --order;
+
+            if (dot_flag && buffer[i] != '0')
+                dot_flag = FALSE;
+        }
+    }
+
+    return order;
+}
+
+
+
+
+
+
+
+
+
+
 
 
 

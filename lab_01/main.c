@@ -113,7 +113,7 @@ int main(void)
 
     parse_mantissa_from_int(integer_digit, &first_digit, first_digit.n_sign_value);
 
-    parse_order_from_int(&first_digit, first_digit.n_sign_value);
+    parse_order_from_int(&first_digit, rc_inp_i);
 
     // обработка и приведение к структурному типу вещественного числа
     big_double second_digit;
@@ -122,7 +122,14 @@ int main(void)
 
     second_digit.n_sign_value = rc_mlen;
 
-    printf("\n%ld\n", second_digit.n_sign_value);
+    parse_mantissa_from_dbl(double_digit, &second_digit, rc_mlen);
+
+    int e_order = parse_e_order(double_digit, rc_inp_d);
+    int root_order = parse_root_order(double_digit, rc_inp_d);
+
+    int order = e_order + root_order;
+
+    printf("\n%d\n", root_order);
 
     return OK;
 }
