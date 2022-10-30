@@ -39,4 +39,4 @@ let g:gruvbox_italic=1
 
 colorscheme gruvbox
 
-nmap <F4> :NERDTree<CR>
+nmap <F4> :NERDTreeToggle<CR>
