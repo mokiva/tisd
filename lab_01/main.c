@@ -50,7 +50,7 @@ int main(void)
     }
 
     // ввод и проверка валидности второго числа
-    printf("                                  ---------------------------------------- (40 знаков)\n");
+    printf("\n                                  ---------------------------------------- (40 знаков)\n");
     printf("----> Введите вещественное число: ");
 
     char double_digit[INP_DBL_LEN + 1] = { '\0' };
@@ -140,6 +140,10 @@ int main(void)
     //printf("\n2. order %d\n", second_digit.order);
     //print_array(second_digit.mantissa, 30);
     //printf("2. n_sign_value %ld\n\n", second_digit.n_sign_value);
+
+    // Умножение двух чисел
+    if (first_digit.n_sign_value == 0 || second_digit.n_sign_value == 0)
+        printf("\n----> Результат = 0\n");
 
     return OK;
 }
