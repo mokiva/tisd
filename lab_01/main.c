@@ -16,26 +16,33 @@ int main(void)
     printf("----> а также длиной порядка до 5 цифр (см. подробности в отчёте)\n\n");
 
     // ввод и проверка валидности первого числа
+    printf("                           ------------------------------- (31 знак)\n");
     printf("----> Введите целое число: ");
 
     char integer_digit[INP_INT_LEN + 1] = { '\0' };
 
-    size_t rc_inp = input_str(integer_digit, INP_INT_LEN);
-    size_t rc_ilen = check_int_len(integer_digit, rc_inp);
+    size_t rc_inp_i = input_str(integer_digit, INP_INT_LEN);
+    size_t rc_ilen = check_int_len(integer_digit, rc_inp_i);
 
-    if (rc_inp == 0)
+    if (rc_inp_i == 0)
     {
         printf("\n----> Ошибка! Пустой ввод\n\n");
         return INP_INT_ZERO;
     }
 
-    if (rc_inp > INP_INT_LEN || rc_ilen == FALSE)
+    if (rc_inp_i > INP_INT_LEN)
     {
         printf("\n----> Ошибка! Длинный ввод\n\n");
         return INP_INT_OVERSIZE;
     }
 
-    size_t rc_icont = check_int_content(integer_digit, rc_inp);
+    if (rc_ilen == FALSE)
+    {
+        printf("\n----> Ошибка! Слишком много десятичных цифр\n\n");
+        return INP_INT_VAL_OVERSIZE;
+    }
+
+    size_t rc_icont = check_int_content(integer_digit, rc_inp_i);
     if (rc_icont == FALSE)
     {
         printf("\n----> Ошибка! Некорректный ввод\n\n");
@@ -43,22 +50,23 @@ int main(void)
     }
 
     // ввод и проверка валидности второго числа
+    printf("                                  ---------------------------------------- (40 знаков)\n");
     printf("----> Введите вещественное число: ");
 
     char double_digit[INP_DBL_LEN + 1] = { '\0' };
 
-    rc_inp = input_str(double_digit, INP_DBL_LEN);
+    size_t rc_inp_d = input_str(double_digit, INP_DBL_LEN);
 
     char *dyn_ptr = double_digit;
     double temp_dbl = strtod(double_digit, &dyn_ptr);
 
-    if (rc_inp == 0)
+    if (rc_inp_d == 0)
     {
         printf("\n----> Ошибка! Пустой ввод\n\n");
         return INP_DBL_ZERO;
     }
 
-    if (rc_inp > INP_DBL_LEN)
+    if (rc_inp_d > INP_DBL_LEN)
     {
         printf("\n----> Ошибка! Длинный ввод\n\n");
         return INP_DBL_OVERSIZE;
@@ -71,7 +79,7 @@ int main(void)
         return INP_DBL_INCOR;
     }
 
-    size_t rc_olen = check_order(double_digit, rc_inp);
+    size_t rc_olen = check_order(double_digit, rc_inp_d);
 
     if (rc_olen > 5)
     {
@@ -79,8 +87,7 @@ int main(void)
         return INP_DBL_ORDER_OVERSIZE;
     }
 
-    size_t rc_mlen = check_mantissa(double_digit, rc_inp);
-    printf("%ld", rc_mlen);
+    size_t rc_mlen = check_mantissa(double_digit, rc_inp_d);
     if (rc_mlen > 30)
     {
         printf("\n----> Ошибка! Слишком длинная мантисса\n\n");
@@ -95,14 +102,53 @@ int main(void)
     }
 
     // TODO реализация
+
+    // обработка и приведение к структурному типу целого числа
     big_double first_digit;
-    big_double second_digit;
 
     parse_sign(integer_digit, &first_digit);
+
+    size_t sign_digits = check_mantissa(integer_digit, rc_inp_i);
+    first_digit.n_sign_value = sign_digits;
+
+    parse_mantissa_from_int(integer_digit, &first_digit, first_digit.n_sign_value);
+
+    parse_order_from_int(&first_digit, first_digit.n_sign_value);
+
+    // обработка и приведение к структурному типу вещественного числа
+    big_double second_digit;
+
     parse_sign(double_digit, &second_digit);
 
-    printf("%c\n", first_digit.sign);
-    printf("%c\n", second_digit.sign);
+    second_digit.n_sign_value = rc_mlen;
+
+    printf("\n%ld\n", second_digit.n_sign_value);
 
     return OK;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

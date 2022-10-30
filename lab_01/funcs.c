@@ -128,7 +128,7 @@ size_t check_mantissa(char *buffer, size_t len)
             }
         }
     }
-    
+
     if (flag_e == FALSE)
     {
         while (i >= 0 && i <= len - 1 && buffer[i] == '0')
@@ -175,11 +175,45 @@ void parse_sign(char *buffer, big_double *value)
         value -> sign = '+';
 }
 
+// функция, заполняющая поле мантиссы в стуктуре
+void parse_mantissa_from_int(char *buffer, big_double *value, size_t mant_len)
+{
+    if (buffer[0] == '-')
+    {
+        for (size_t i = 0; i < mant_len; ++i)
+        {
+            value -> mantissa[i] = buffer[i + 1] - '0';
+        }
+    }
+    else
+    {
+        for (size_t i = 0; i < mant_len; ++i)
+        {
+            value -> mantissa[i] = buffer[i] - '0';
+        }
+    }
 
+    for (size_t i = mant_len; i < MAX_MANT_LEN; ++i)
+    {
+        value -> mantissa[i] = 0;
+    }
+}
 
+// функция, печатающая массив
+void print_array(int arr[], int len)
+{
+    for (int i = 0; i < len; ++i)
+    {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+}
 
-
-
+// функция, заполняющая поле порядка в структуре
+void parse_order_from_int(big_double *value, size_t mant_len)
+{
+    value -> order = mant_len - 30;
+}
 
 
 

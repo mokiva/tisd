@@ -26,4 +26,33 @@ size_t check_zeros(char *buffer);
 // заголовок функции, парсящей знак числа в поле структуры
 void parse_sign(char *buffer, big_double *value);
 
+// заголовок функции, заполняющей поле мантиссы в стуктуре
+void parse_mantissa_from_int(char *buffer, big_double *value, size_t mant_len);
+
+// заголовок функции, печатающей массив
+void print_array(int arr[], int len);
+
+// заголовок функции, заполняющей поле порядка в структуре
+void parse_order_from_int(big_double *value, size_t mant_len);
+
 #endif  // __FUNCS_H__
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
