@@ -131,19 +131,23 @@ int main(void)
 
     second_digit.order = order;
 
-    //printf("\n1. sign %c", first_digit.sign);
-    //printf("\n1. order %d\n", first_digit.order);
-    //print_array(first_digit.mantissa, 30);
-    //printf("1. n_sign_value %ld\n\n", first_digit.n_sign_value);
+    printf("\n1. sign %c", first_digit.sign);
+    printf("\n1. order %d\n", first_digit.order);
+    print_array(first_digit.mantissa, 30);
+    printf("1. n_sign_value %ld\n\n", first_digit.n_sign_value);
 
-    //printf("\n2. sign %c", second_digit.sign);
-    //printf("\n2. order %d\n", second_digit.order);
-    //print_array(second_digit.mantissa, 30);
-    //printf("2. n_sign_value %ld\n\n", second_digit.n_sign_value);
+    printf("\n2. sign %c", second_digit.sign);
+    printf("\n2. order %d\n", second_digit.order);
+    print_array(second_digit.mantissa, 30);
+    printf("2. n_sign_value %ld\n\n", second_digit.n_sign_value);
 
     // Умножение двух чисел
     if (first_digit.n_sign_value == 0 || second_digit.n_sign_value == 0)
         printf("\n----> Результат = 0\n");
+
+    int result[MAX_MANT_LEN + MAX_MANT_LEN] = { 0 };
+    give_multy(first_digit.mantissa, second_digit.mantissa, result, 30, 30, 60);
+    print_array(result, 60);
 
     return OK;
 }

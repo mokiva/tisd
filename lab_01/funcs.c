@@ -315,7 +315,23 @@ int parse_root_order(char *buffer, size_t mant_len)
     return order;
 }
 
+// заголовок функции, реализующей умножение чисел, записанных в двух массивах и записывающей результат в третий
+void give_multy(int *arr1, int *arr2, int *res, size_t len1, size_t len2, size_t rlen)
+{
+    for (int i = len1 - 1; i >= 0; --i)
+    {
+        for (int j = len2 - 1; j >= 0; --j)
+        {
+            res[i + j + 1] += arr1[i] * arr2[j];
+        }
+    }
 
+    for (size_t i = rlen - 1; i > 0; --i)
+    {
+        res[i - 1] += res[i] / 10;
+        res[i] %= 10;
+    }
+}
 
 
 
