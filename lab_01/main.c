@@ -131,16 +131,6 @@ int main(void)
 
     second_digit.order = order;
 
-    printf("\n1. sign %c", first_digit.sign);
-    printf("\n1. order %d\n", first_digit.order);
-    print_array(first_digit.mantissa, 30);
-    printf("1. n_sign_value %ld\n\n", first_digit.n_sign_value);
-
-    printf("\n2. sign %c", second_digit.sign);
-    printf("\n2. order %d\n", second_digit.order);
-    print_array(second_digit.mantissa, 30);
-    printf("2. n_sign_value %ld\n\n", second_digit.n_sign_value);
-
     // Умножение двух чисел
     if (first_digit.n_sign_value == 0 || second_digit.n_sign_value == 0)
         printf("\n----> Результат = 0\n\n");
@@ -156,11 +146,19 @@ int main(void)
         return BAD_ROUND;
     }
 
-    print_array(result, MAX_MULTY_LEN);
+    int addit_order;
+    if (result[0] != 0)
+        addit_order = 60;
+    else
+        addit_order = 59;
 
-    based_order = first_digit.order + second_digit.order;
+    int based_order = first_digit.order + second_digit.order + addit_order;
 
     printf("\n----> Результат = 0.");
+    print_array(result, MAX_MULTY_LEN);
+    printf("e");
+    printf("%d", based_order);
+    printf("\n\n");
 
     return OK;
 }

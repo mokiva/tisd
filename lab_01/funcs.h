@@ -30,7 +30,7 @@ void parse_sign(char *buffer, big_double *value);
 void parse_mantissa_from_int(char *buffer, big_double *value, size_t mant_len);
 
 // заголовок функции, печатающей массив
-void print_array(int arr[], int len);
+void print_array(int *arr, size_t len);
 
 // заголовок функции, заполняющей поле порядка целого числа в структуре
 void parse_order_from_int(big_double *value, size_t mant_len);

@@ -194,10 +194,25 @@ void parse_mantissa_from_int(char *buffer, big_double *value, size_t mant_len)
 }
 
 // функция, печатающая массив
-void print_array(int arr[], int len)
+void print_array(int *arr, size_t len)
 {
-    for (int i = 0; i < len; ++i)
+    size_t count = 0;
+
+    for (int i = len - 1; i >= 0; --i)
+    {
+        if (arr[i] != 0)
+            break;
+
+        ++count;
+    }
+
+    for (size_t i = 0; i < len - count; ++i)
+    {
+        if (arr[i] == 0 && i == 0)
+            continue;
+
         printf("%d", arr[i]);
+    }
 }
 
 // функция, заполняющая поле порядка целого числа в структуре
