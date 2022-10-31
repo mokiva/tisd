@@ -135,7 +135,10 @@ int main(void)
 
     // Умножение двух чисел
     if (first_digit.n_sign_value == 0 || second_digit.n_sign_value == 0)
+    {
         printf("\n----> Результат = 0\n\n");
+        return OK;
+    }
 
     int result[MAX_MANT_LEN + MAX_MANT_LEN] = { 0 };
 
