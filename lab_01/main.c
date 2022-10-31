@@ -146,8 +146,8 @@ int main(void)
         printf("\n----> Результат = 0\n");
 
     int result[MAX_MANT_LEN + MAX_MANT_LEN] = { 0 };
-    give_multy(first_digit.mantissa, second_digit.mantissa, result, 30, 30, 60);
-    print_array(result, 60);
+    give_multy(first_digit.mantissa, second_digit.mantissa, result, MAX_MANT_LEN, MAX_MANT_LEN, MAX_MULTY_LEN);
+    print_array(result, MAX_MULTY_LEN);
 
     return OK;
 }
