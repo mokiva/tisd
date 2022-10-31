@@ -101,7 +101,7 @@ int main(void)
         return INP_DBL_FZERO;
     }
 
-    // TODO реализация
+    // реализация
 
     // обработка и приведение к структурному типу целого числа
     big_double first_digit;
@@ -113,6 +113,8 @@ int main(void)
 
     parse_mantissa_from_int(integer_digit, &first_digit, first_digit.n_sign_value);
 
+    if (integer_digit[0] == '+' || integer_digit[0] == '-')
+        --rc_inp_i;
     parse_order_from_int(&first_digit, rc_inp_i);
 
     // обработка и приведение к структурному типу вещественного числа
@@ -153,8 +155,17 @@ int main(void)
         addit_order = 59;
 
     int based_order = first_digit.order + second_digit.order + addit_order;
+    if (based_order > 99999 || based_order < -99999)
+    {
+        printf("\n----> Слишком большой порядок в ответе!\n\n");
+        return RES_ORDER_OVERSIZE; 
+    }
 
-    printf("\n----> Результат = 0.");
+    printf("\n----> Результат = ");
+    if ((first_digit.sign == '+' && second_digit.sign == '+') || (first_digit.sign == '-' && second_digit.sign == '-'))
+        printf("0.");
+    else
+        printf("-0.");
     print_array(result, MAX_MULTY_LEN);
     printf("e");
     printf("%d", based_order);
@@ -162,29 +173,3 @@ int main(void)
 
     return OK;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

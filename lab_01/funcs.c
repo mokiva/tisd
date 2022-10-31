@@ -178,7 +178,7 @@ void parse_sign(char *buffer, big_double *value)
 // функция, заполняющая поле мантиссы в стуктуре для целого числа
 void parse_mantissa_from_int(char *buffer, big_double *value, size_t mant_len)
 {
-    if (buffer[0] == '-')
+    if (buffer[0] == '-' || buffer[0] == '+')
     {
         for (size_t i = 0; i < mant_len; ++i)
             value -> mantissa[i] = buffer[i + 1] - '0';
