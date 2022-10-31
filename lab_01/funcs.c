@@ -366,20 +366,3 @@ size_t res_round(int *res, size_t rlen)
 
     return flag;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

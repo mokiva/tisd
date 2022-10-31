@@ -51,23 +51,3 @@ void give_multy(int *arr1, int *arr2, int *res, size_t len1, size_t len2, size_t
 size_t res_round(int *res, size_t rlen);
 
 #endif  // __FUNCS_H__
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
