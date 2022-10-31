@@ -47,6 +47,9 @@ int parse_root_order(char *buffer, size_t mant_len);
 // заголовок функции, реализующей умножение чисел, записанных в двух массивах и записывающей результат в третий
 void give_multy(int *arr1, int *arr2, int *res, size_t len1, size_t len2, size_t rlen);
 
+// заголовок функции, реализующей округление числа
+size_t res_round(int *res, size_t rlen);
+
 #endif  // __FUNCS_H__
 
 

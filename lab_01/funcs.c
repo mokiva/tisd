@@ -197,9 +197,7 @@ void parse_mantissa_from_int(char *buffer, big_double *value, size_t mant_len)
 void print_array(int arr[], int len)
 {
     for (int i = 0; i < len; ++i)
-        printf("%d ", arr[i]);
-
-    printf("\n");
+        printf("%d", arr[i]);
 }
 
 // функция, заполняющая поле порядка целого числа в структуре
@@ -315,7 +313,7 @@ int parse_root_order(char *buffer, size_t mant_len)
     return order;
 }
 
-// заголовок функции, реализующей умножение чисел, записанных в двух массивах и записывающей результат в третий
+// функция, реализующая умножение чисел, записанных в двух массивах и записывающая результат в третий
 void give_multy(int *arr1, int *arr2, int *res, size_t len1, size_t len2, size_t rlen)
 {
     for (int i = len1 - 1; i >= 0; --i)
@@ -333,9 +331,26 @@ void give_multy(int *arr1, int *arr2, int *res, size_t len1, size_t len2, size_t
     }
 }
 
+// функция, реализующая округление числа
+size_t res_round(int *res, size_t rlen)
+{
+    size_t flag = TRUE;
 
+    for (size_t i = MAX_MANT_LEN + 1; i > 0; --i)
+    {
+        if (res[i] >= 5)
+        {
+            if (i == 1 && res[0] == 9)
+                flag = FALSE;
 
+            res[i - 1] += 1;
+        }
+        else
+            break;
+    }
 
+    return flag;
+}
 
 
 

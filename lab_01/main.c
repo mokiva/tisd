@@ -143,11 +143,24 @@ int main(void)
 
     // Умножение двух чисел
     if (first_digit.n_sign_value == 0 || second_digit.n_sign_value == 0)
-        printf("\n----> Результат = 0\n");
+        printf("\n----> Результат = 0\n\n");
 
     int result[MAX_MANT_LEN + MAX_MANT_LEN] = { 0 };
+
     give_multy(first_digit.mantissa, second_digit.mantissa, result, MAX_MANT_LEN, MAX_MANT_LEN, MAX_MULTY_LEN);
+
+    size_t rc_round = res_round(result, MAX_MULTY_LEN);
+    if (rc_round == FALSE)
+    {
+        printf("\n----> Ошибка округления!\n\n");
+        return BAD_ROUND;
+    }
+
     print_array(result, MAX_MULTY_LEN);
+
+    based_order = first_digit.order + second_digit.order;
+
+    printf("\n----> Результат = 0.");
 
     return OK;
 }
