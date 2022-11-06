@@ -353,29 +353,6 @@ void give_multy(int *arr1, int *arr2, int *res, size_t len1, size_t len2, size_t
 }
 
 // функция, реализующая округление числа
-//size_t res_round(int *res, size_t rlen)
-//{
-//    size_t flag = TRUE;
-//
-//    for (size_t i = MAX_MANT_LEN; i > 0; --i)
-//    {
-//        if (res[i] >= 5)
-//        {
-//            if (i == 1 && res[0] == 9)
-//                flag = FALSE;
-//
-//            if (res[i] == 10)
-//                res[i] = 0;
-//
-//            res[i - 1] += 1;
-//        }
-//        else
-//            break;
-//    }
-//
-//    return flag;
-//}
-
 void res_round(int *res)
 {
     size_t count = 0;
@@ -389,8 +366,6 @@ void res_round(int *res)
 
     if (res[i] >= 5)
     {
-        printf("\ndigit = %d, index = %ld\n", res[i], i);
-
         --i;
 
         while (res[i] + 1 >= 10)
