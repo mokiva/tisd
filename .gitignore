@@ -1,4 +1,6 @@
 *.o
 *.out
 *.exe
-/lab_01/.idea/
+lab_01/.idea/
+lab_01/cmake-build-debug/
+lab_01/CMakeLists.txt
