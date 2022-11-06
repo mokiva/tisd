@@ -169,7 +169,7 @@ int main(void)
         printf("0.");
     else
         printf("-0.");
-    print_array(result, MAX_MULTY_LEN);
+    print_array(result, MAX_MANT_LEN);
     printf("e");
     printf("%d", based_order);
     printf("\n\n");

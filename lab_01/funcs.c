@@ -358,6 +358,9 @@ size_t res_round(int *res, size_t rlen)
             if (i == 1 && res[0] == 9)
                 flag = FALSE;
 
+            if (res[i] == 10)
+                res[i] = 0;
+
             res[i - 1] += 1;
         }
         else
