@@ -144,12 +144,7 @@ int main(void)
 
     give_multy(first_digit.mantissa, second_digit.mantissa, result, MAX_MANT_LEN, MAX_MANT_LEN, MAX_MULTY_LEN);
 
-    size_t rc_round = res_round(result, MAX_MULTY_LEN);
-    if (rc_round == FALSE)
-    {
-        printf("\n----> Ошибка округления!\n\n");
-        return BAD_ROUND;
-    }
+    res_round(result);
 
     int addit_order;
     if (result[0] != 0)

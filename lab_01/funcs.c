@@ -197,8 +197,14 @@ void parse_mantissa_from_int(char *buffer, big_double *value, size_t mant_len)
 void print_array(int *arr, size_t len)
 {
     size_t count = 0;
+    size_t n_count = 0;
 
-    for (int i = len - 1; i >= 0; --i)
+    while (arr[n_count] == 0)
+    {
+        ++n_count;
+    }
+
+    for (int i = len - 1 + n_count; i >= 0; --i)
     {
         if (arr[i] != 0)
             break;
@@ -206,7 +212,7 @@ void print_array(int *arr, size_t len)
         ++count;
     }
 
-    for (size_t i = 0; i < len - count; ++i)
+    for (size_t i = 0; i < len - count + n_count; ++i)
     {
         if (arr[i] == 0 && i == 0)
             continue;
@@ -347,25 +353,52 @@ void give_multy(int *arr1, int *arr2, int *res, size_t len1, size_t len2, size_t
 }
 
 // функция, реализующая округление числа
-size_t res_round(int *res, size_t rlen)
+//size_t res_round(int *res, size_t rlen)
+//{
+//    size_t flag = TRUE;
+//
+//    for (size_t i = MAX_MANT_LEN; i > 0; --i)
+//    {
+//        if (res[i] >= 5)
+//        {
+//            if (i == 1 && res[0] == 9)
+//                flag = FALSE;
+//
+//            if (res[i] == 10)
+//                res[i] = 0;
+//
+//            res[i - 1] += 1;
+//        }
+//        else
+//            break;
+//    }
+//
+//    return flag;
+//}
+
+void res_round(int *res)
 {
-    size_t flag = TRUE;
+    size_t count = 0;
 
-    for (size_t i = MAX_MANT_LEN; i > 0; --i)
+    while (res[count] == 0)
     {
-        if (res[i] >= 5)
-        {
-            if (i == 1 && res[0] == 9)
-                flag = FALSE;
-
-            if (res[i] == 10)
-                res[i] = 0;
-
-            res[i - 1] += 1;
-        }
-        else
-            break;
+        ++count;
     }
 
-    return flag;
+    size_t i = MAX_MANT_LEN + count;
+
+    if (res[i] >= 5)
+    {
+        printf("\ndigit = %d, index = %ld\n", res[i], i);
+
+        --i;
+
+        while (res[i] + 1 >= 10)
+        {
+            res[i] = 0;
+            --i;
+        }
+
+        ++res[i];
+    }
 }
