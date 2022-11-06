@@ -351,7 +351,7 @@ size_t res_round(int *res, size_t rlen)
 {
     size_t flag = TRUE;
 
-    for (size_t i = MAX_MANT_LEN + 1; i > 0; --i)
+    for (size_t i = MAX_MANT_LEN; i > 0; --i)
     {
         if (res[i] >= 5)
         {
