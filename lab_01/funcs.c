@@ -57,6 +57,9 @@ size_t check_int_content(char *buffer, size_t len)
     if (buffer[0] == '0' && buffer[1] == '0')
         flag = FALSE;
 
+    if (buffer[0] == '0' && buffer[1] != '\0')
+        flag = FALSE;
+
     return flag;
 }
 
