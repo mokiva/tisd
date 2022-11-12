@@ -1,6 +1,6 @@
-#include <stdio.h>
+#include "defines.h"
 
 int main(void)
 {
-    return 0
+    return SUCCESS;
 }
