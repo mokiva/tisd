@@ -19,7 +19,29 @@ void print_main_message(void)
            "    9. Вывод результатов использования различных алгоритмов сортировок для исходной таблицы\n\n");
 }
 
-void get_choice(int *choice)
+int get_choice(int *choice)
 {
-    *choice = getchar();
+    int ch;
+    int count = 0;
+    int digit = '\0';
+
+    while ((ch = getchar()) != '\n' && ch != EOF)
+    {
+        if (count == 0)
+            digit = ch;
+
+        ++count;
+    }
+
+    ++count;
+
+    if (count != 2)
+        return BAD_GETCHAR_COUNT;
+
+    if (isdigit(digit) == 0)
+        return BAD_CHOICE_VALUE;
+
+    *choice = digit;
+
+    return SUCCESS;
 }
