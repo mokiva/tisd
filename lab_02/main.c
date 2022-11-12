@@ -10,10 +10,11 @@ int main(void)
     while (choice != EXIT)
     {
         print_main_message();
+        printf("    Выберите пункт меню: ");
         int rc = get_choice(&choice);
         if (rc)
         {
-            printf("\n-------------\n");
+            printf("\n    Неверный ввод\n");
             continue;
         }
     }
