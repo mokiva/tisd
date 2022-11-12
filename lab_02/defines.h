@@ -3,7 +3,6 @@
 
 // коды ошибок
 #define SUCCESS        0
-#define BAD_GET_CHOICE 1
 
 // константы
 #define AUTHOR_SURNAME 30

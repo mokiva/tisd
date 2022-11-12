@@ -5,6 +5,6 @@
 void print_main_message(void);
 
 // ввод значения для выбора пункта меню
-int get_choice(int *choice);
+void get_choice(int *choice);
 
 #endif

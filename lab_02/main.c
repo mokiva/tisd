@@ -10,9 +10,7 @@ int main(void)
     while (choice != EXIT)
     {
         print_main_message();
-        int rc = get_choice(&choice);
-        if (rc)
-            continue;
+        get_choice(&choice);
     }
 
     return SUCCESS;

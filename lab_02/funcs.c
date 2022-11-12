@@ -19,16 +19,7 @@ void print_main_message(void)
            "    9. Вывод результатов использования различных алгоритмов сортировок для исходной таблицы\n\n");
 }
 
-int get_choice(int *choice)
+void get_choice(int *choice)
 {
     *choice = getchar();
-    int temp_char = getchar();
-
-    if (*choice == EOF || (temp_char != EOF && temp_char != '\n') || isdigit(*choice) == 0)
-    {
-        printf("Неверный ввод\n");
-        return BAD_GET_CHOICE;
-    }
-
-    return SUCCESS;
 }
