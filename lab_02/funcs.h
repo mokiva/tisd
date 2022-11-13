@@ -14,4 +14,7 @@ int get_choice(int *choice);
 // проверка корректности таблицы в файле
 int load_table(table *tab);
 
+// добавление в таблицу записи
+int append_field(table *tab);
+
 #endif

@@ -8,6 +8,7 @@ int main(void)
 {
     int choice = 1;
     table tab;
+    tab.fields_count = 0;
 
     // Цикл выбора главного меню программы
     while (choice != EXIT)
@@ -27,10 +28,26 @@ int main(void)
         {
             case '1':
                 rc = load_table(&tab);
-                printf("\n-----------%d--------\n", rc);
                 if (rc)
                 {
                     printf("\n    Ошибка загрузки таблицы из файла\n");
+                    break;
+                }
+                else
+                {
+                    printf("\n    Таблицы загружена успешно\n");
+                    break;
+                }
+            case '2':
+                rc = append_field(&tab);
+                if (rc)
+                {
+                    printf("\n    Ошибка добавления структуры\n");
+                    break;
+                }
+                else
+                {
+                    printf("\n    Структура добавлена успешно\n");
                     break;
                 }
         }

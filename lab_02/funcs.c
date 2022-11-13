@@ -60,6 +60,8 @@ int load_table(table *tab)
     if (size <= 0)
         return BAD_SIZE_IN_FILE;
 
+    tab -> fields_count = size;
+
     for (int i = 0; i < size; ++i)
     {
         // заполнение поля фамилии автора
@@ -76,7 +78,6 @@ int load_table(table *tab)
         }
 
         strncpy(tab -> literatures_instances[i].author_surname, buffer_author_surname, BUFFER_LENGTH + 1);
-        printf("\n|%s|\n", tab ->literatures_instances[i].author_surname);
 
         // заполнение поля названия книги
         j = 0;
@@ -90,7 +91,6 @@ int load_table(table *tab)
         }
 
         strncpy(tab -> literatures_instances[i].book_title, buffer_book_title, BUFFER_LENGTH + 1);
-        printf("|%s|\n", tab ->literatures_instances[i].book_title);
 
         // заполнение поля издателя книги
         j = 0;
@@ -103,7 +103,6 @@ int load_table(table *tab)
         }
 
         strncpy(tab -> literatures_instances[i].publisher_name, buffer_publisher_name, BUFFER_LENGTH + 1);
-        printf("|%s|\n", tab ->literatures_instances[i].publisher_name);
 
         // заполнение количества страниц
         j = 0;
@@ -127,7 +126,8 @@ int load_table(table *tab)
             return BAD_CONVERSION_TO_DIGIT;
 
         tab -> literatures_instances[i].number_of_pages = digit;
-        printf("|%d|\n", tab ->literatures_instances[i].number_of_pages);
+        tab -> key_instances[i].key_value = digit;
+        tab -> key_instances[i].key_index = i;
 
         // заполнение вида литературы
         j = 0;
@@ -151,7 +151,6 @@ int load_table(table *tab)
             return BAD_LIT_TYPE;
 
         tab -> literatures_instances[i].int_type = digit;
-        printf("|%d|\n", tab ->literatures_instances[i].int_type);
 
         // если литература техническая
         if (digit == 1)
@@ -168,7 +167,6 @@ int load_table(table *tab)
             }
 
             strncpy(tab -> literatures_instances[i].type.technical_type.sphere, buffer_sphere_name, BUFFER_LENGTH + 1);
-            printf("|%s|\n", tab ->literatures_instances[i].type.technical_type.sphere);
 
             // заполнение отечественная или переводная
             j = 0;
@@ -192,7 +190,6 @@ int load_table(table *tab)
                 return BAD_LIT_TYPE;
 
             tab -> literatures_instances[i].type.technical_type.domestic_or_translated = digit;
-            printf("|%d|\n", tab ->literatures_instances[i].type.technical_type.domestic_or_translated);
 
             //заполнение года издания
             j = 0;
@@ -217,7 +214,6 @@ int load_table(table *tab)
                 return BAD_LIT_TYPE;
 
             tab -> literatures_instances[i].type.technical_type.year_of_publication = digit;
-            printf("|%d|\n", tab ->literatures_instances[i].type.technical_type.year_of_publication);
 
         }
         else if (digit == 2) // если литература художественная
@@ -243,7 +239,6 @@ int load_table(table *tab)
                 return BAD_LIT_TYPE;
 
             tab -> literatures_instances[i].type.artistic_type.artistic_type = digit;
-            printf("|%d|\n", tab ->literatures_instances[i].type.artistic_type.artistic_type);
         }
         else if (digit == 3) // если литература детская
         {
@@ -268,10 +263,130 @@ int load_table(table *tab)
                 return BAD_LIT_TYPE;
 
             tab -> literatures_instances[i].type.children_type.children_type = digit;
-            printf("|%d|\n", tab ->literatures_instances[i].type.children_type.children_type);
         }
     }
 
     fclose(file);
+    return SUCCESS;
+}
+
+int append_field(table *tab)
+{
+    // заполнения поля фамилии автора
+    printf("\n    Введите имя автора книги: ");
+    char buffer_author_surname[BUFFER_LENGTH + 1] = { '\0' };
+    int ch;
+    int count = 0;
+
+    while ((ch = getchar()) != '\n')
+    {
+        if (count < BUFFER_LENGTH)
+            buffer_author_surname[count] = (char) ch;
+
+        ++count;
+    }
+
+    if (count > BUFFER_LENGTH)
+        return LONG_INPUT;
+
+    int index = tab -> fields_count;
+    strncpy(tab -> literatures_instances[index].author_surname, buffer_author_surname, BUFFER_LENGTH + 1);
+
+    // заполнение поля названия книги
+    printf("\n    Введите название книги: ");
+    char buffer_book_title[BUFFER_LENGTH + 1] = { '\0' };
+    count = 0;
+
+    while ((ch = getchar()) != '\n')
+    {
+        if (count < BUFFER_LENGTH)
+            buffer_book_title[count] = (char) ch;
+
+        ++count;
+    }
+
+    if (count > BUFFER_LENGTH)
+        return LONG_INPUT;
+
+    strncpy(tab -> literatures_instances[index].book_title, buffer_book_title, BUFFER_LENGTH + 1);
+
+    // заполнение поля названия издательства
+    printf("\n    Введите название издательства: ");
+    char buffer_publisher_name[BUFFER_LENGTH + 1] = { '\0' };
+    count = 0;
+
+    while ((ch = getchar()) != '\n')
+    {
+        if (count < BUFFER_LENGTH)
+            buffer_publisher_name[count] = (char) ch;
+
+        ++count;
+    }
+
+    if (count > BUFFER_LENGTH)
+        return LONG_INPUT;
+
+    strncpy(tab -> literatures_instances[index].publisher_name, buffer_publisher_name, BUFFER_LENGTH + 1);
+
+    // заполнение поля количества страниц в книге
+    printf("\n    Введите количество страниц в книге: ");
+    char buffer_number_of_pages[BUFFER_LENGTH + 1] = { '\0' };
+    count = 0;
+
+    while ((ch = getchar()) != '\n')
+    {
+        if (count < BUFFER_LENGTH)
+            buffer_number_of_pages[count] = (char) ch;
+
+        ++count;
+    }
+
+    if (count > BUFFER_LENGTH)
+        return LONG_INPUT;
+
+    for (int i = 0; i < count; ++i)
+        if (isdigit(buffer_number_of_pages[i]) == 0)
+            return BAD_DIGIT;
+
+    int digit = (int) strtol(buffer_number_of_pages, NULL, 10);
+    if (digit <= 0 || digit > 99999 || errno == ERANGE)
+        return BAD_CONVERSION_TO_DIGIT;
+
+    tab -> literatures_instances[index].number_of_pages = digit;
+    tab -> key_instances[index].key_value = digit;
+    tab -> key_instances[index].key_index = index;
+
+    // заполнение поля типа литературы
+    printf("\n    1. Техническая\n"
+           "    2. Художественная\n"
+           "    3. Детская\n\n");
+
+    printf("    Выберите пункт меню: ");
+
+    char buffer_int_type[BUFFER_LENGTH + 1] = { '\0' };
+    count = 0;
+
+    while ((ch = getchar()) != '\n')
+    {
+        if (count < BUFFER_LENGTH)
+            buffer_int_type[count] = (char) ch;
+
+        ++count;
+    }
+
+    if (count > BUFFER_LENGTH)
+        return LONG_INPUT;
+
+    for (int i = 0; i < count; ++i)
+        if (isdigit(buffer_int_type[i]) == 0)
+            return BAD_DIGIT;
+
+    digit = (int) strtol(buffer_int_type, NULL, 10);
+    if (digit != 1 && digit != 2 && digit != 3)
+        return BAD_CONVERSION_TO_DIGIT;
+
+    tab -> literatures_instances[index].int_type = digit;
+
+    tab -> fields_count += 1;
     return SUCCESS;
 }
