@@ -27,4 +27,7 @@ int sort_key_table(table *tab);
 // Печать таблицы ключей
 void print_key_table(table tab);
 
+// Сортировка таблицы
+int sort_table(table *tab);
+
 #endif

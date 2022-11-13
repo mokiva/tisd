@@ -757,3 +757,44 @@ void print_key_table(table tab)
         printf("%30d\n", tab.key_instances[i].key_value);
     }
 }
+
+int sort_table(table *tab)
+{
+    if (tab -> fields_count == 0)
+        return EMPTY_TABLE;
+
+    for (int i = 0; i < tab -> fields_count - 1; ++i)
+    {
+        for (int j = 0; j < tab -> fields_count - i - 1; ++j)
+        {
+            if (tab -> literatures_instances[j].number_of_pages > tab -> literatures_instances[j + 1].number_of_pages)
+            {
+                int temp = tab -> literatures_instances[j + 1].number_of_pages;
+                tab -> literatures_instances[j + 1].number_of_pages = tab -> literatures_instances[j].number_of_pages;
+                tab -> literatures_instances[j].number_of_pages = temp;
+
+                char buffer[BUFFER_LENGTH + 1] = { '\0' };
+
+                strncpy(buffer, tab -> literatures_instances[j + 1].author_surname, BUFFER_LENGTH + 1);
+                strncpy(tab -> literatures_instances[j + 1].author_surname, tab -> literatures_instances[j].author_surname, BUFFER_LENGTH + 1);
+                strncpy(tab -> literatures_instances[j].author_surname, buffer, BUFFER_LENGTH + 1);
+
+                strncpy(buffer, tab -> literatures_instances[j + 1].book_title, BUFFER_LENGTH + 1);
+                strncpy(tab -> literatures_instances[j + 1].book_title, tab -> literatures_instances[j].book_title, BUFFER_LENGTH + 1);
+                strncpy(tab -> literatures_instances[j].book_title, buffer, BUFFER_LENGTH + 1);
+
+                strncpy(buffer, tab -> literatures_instances[j + 1].publisher_name, BUFFER_LENGTH + 1);
+                strncpy(tab -> literatures_instances[j + 1].publisher_name, tab -> literatures_instances[j].publisher_name, BUFFER_LENGTH + 1);
+                strncpy(tab -> literatures_instances[j].publisher_name, buffer, BUFFER_LENGTH + 1);
+
+                temp = tab -> literatures_instances[j + 1].int_type;
+                tab -> literatures_instances[j + 1].int_type = tab -> literatures_instances[j].int_type;
+                tab -> literatures_instances[j].int_type = temp;
+
+                literature_type temp_un = tab -> literatures_instances[j + 1].type;
+                tab -> literatures_instances[j + 1].type = tab -> literatures_instances[j].type;
+                tab -> literatures_instances[j].type = temp_un;
+            }
+        }
+    }
+}

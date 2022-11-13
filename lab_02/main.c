@@ -78,7 +78,8 @@ int main(void)
                     print_key_table(tab);
                     break;
                 }
-
+            case '5':
+                rc = sort_table(&tab);
         }
     }
 
