@@ -36,10 +36,11 @@ int main(void)
                 else
                 {
                     printf("\n    Таблицы загружена успешно\n");
+                    print_table(tab);
                     break;
                 }
             case '2':
-                rc = append_field(&tab);
+                rc = append_record(&tab);
                 if (rc)
                 {
                     printf("\n    Ошибка добавления структуры\n");
@@ -48,7 +49,18 @@ int main(void)
                 else
                 {
                     printf("\n    Структура добавлена успешно\n");
+                    print_table(tab);
                     break;
+                }
+            case '3':
+                rc = delete_record(&tab);
+                if (rc)
+                {
+
+                }
+                else
+                {
+
                 }
         }
     }

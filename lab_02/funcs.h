@@ -15,6 +15,12 @@ int get_choice(int *choice);
 int load_table(table *tab);
 
 // добавление в таблицу записи
-int append_field(table *tab);
+int append_record(table *tab);
+
+// Печать таблицы
+void print_table(table tab);
+
+// Удаление из таблицы по количеству страниц
+int delete_record(table *tab)
 
 #endif
