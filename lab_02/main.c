@@ -65,6 +65,19 @@ int main(void)
                     print_table(tab);
                     break;
                 }
+            case '4':
+                rc = sort_key_table(&tab);
+                if (rc)
+                {
+                    printf("\n    Таблицы ключей пустая\n");
+                    break;
+                }
+                else
+                {
+                    printf("\n    Таблица ключей отсортирована\n");
+
+                }
+
         }
     }
 

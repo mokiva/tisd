@@ -1,8 +1,6 @@
 #ifndef FUNCS_H
 #define FUNCS_H
 
-#include <stdio.h>
-
 #include "structs.h"
 
 // вывод главного сообщения меню
@@ -22,5 +20,11 @@ void print_table(table tab);
 
 // Удаление из таблицы по количеству страниц
 int delete_record(table *tab);
+
+// Сортировка таблицы ключей
+int sort_key_table(table *tab);
+
+// Печать таблицы ключей
+void print_key_table(table tab);
 
 #endif

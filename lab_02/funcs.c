@@ -687,12 +687,27 @@ int delete_record(table *tab)
     if (digit <= 0 || digit > 99999 || errno == ERANGE)
         return BAD_CONVERSION_TO_DIGIT;
 
-    for (int i = 0; i < tab -> fields_count; ++i)
+    int temp_fields = tab -> fields_count;
+
+    for (int i = 0; i < temp_fields; ++i)
     {
         if (tab -> literatures_instances[i].number_of_pages == digit)
         {
-            for (int j = i; j < tab -> fields_count - 1; ++j)
+            for (int j = i; j < temp_fields - 1; ++j)
                 tab -> literatures_instances[j] = tab -> literatures_instances[j + 1];
+
+            temp_fields -= 1;
+
+            --i;
+        }
+    }
+
+    for (int i = 0; i < tab -> fields_count; ++i)
+    {
+        if (tab -> key_instances[i].key_value == digit)
+        {
+            for (int j = i; j < tab -> fields_count - 1; ++j)
+                tab -> key_instances[j].key_value = tab -> key_instances[j + 1].key_value;
 
             tab -> fields_count -= 1;
 
@@ -701,4 +716,36 @@ int delete_record(table *tab)
     }
 
     return SUCCESS;
+}
+
+int sort_key_table(table *tab)
+{
+    if (tab -> fields_count == 0)
+        return EMPTY_TABLE;
+
+    for (int i = 0; i < tab -> fields_count - 1; ++i)
+    {
+        for (int j = 0; j < tab -> fields_count - i - 1; ++j)
+        {
+            if (tab -> key_instances[j].key_value > tab -> key_instances[j + 1].key_value)
+            {
+                int temp = tab -> key_instances[j + 1].key_value;
+                tab -> key_instances[j + 1].key_value = tab -> key_instances[j].key_value;
+                tab -> key_instances[j].key_value = temp;
+            }
+        }
+    }
+
+    return SUCCESS;
+}
+
+void print_key_table(table tab)
+{
+    printf("\n%30s", "Key index");
+    printf("%30s\n\n", "Key value");
+
+    for (int i = 0; i < tab.fields_count; ++i)
+    {
+
+    }
 }
