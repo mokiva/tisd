@@ -7,6 +7,7 @@ int main(void)
 {
     int choice = 1;
 
+    // Цикл выбора главного меню программы
     while (choice != EXIT)
     {
         print_main_message();

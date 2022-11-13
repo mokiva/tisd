@@ -22,25 +22,20 @@ int get_choice(int *choice)
 {
     int ch;
     int count = 0;
-    int digit = '\0';
 
     while ((ch = getchar()) != '\n' && ch != EOF)
     {
         if (count == 0)
-            digit = ch;
+            *choice = ch;
 
         ++count;
     }
 
-    ++count;
-
-    if (count != 2)
+    if (count != 1)
         return BAD_GETCHAR_COUNT;
 
-    if (isdigit(digit) == 0)
+    if (isdigit(*choice) == 0)
         return BAD_CHOICE_VALUE;
-
-    *choice = digit;
 
     return SUCCESS;
 }
