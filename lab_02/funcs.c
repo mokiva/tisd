@@ -707,7 +707,10 @@ int delete_record(table *tab)
         if (tab -> key_instances[i].key_value == digit)
         {
             for (int j = i; j < tab -> fields_count - 1; ++j)
-                tab -> key_instances[j].key_value = tab -> key_instances[j + 1].key_value;
+            {
+                tab->key_instances[j].key_value = tab->key_instances[j + 1].key_value;
+                tab->key_instances[j].key_index = tab->key_instances[j + 1].key_index;
+            }
 
             tab -> fields_count -= 1;
 
