@@ -75,7 +75,8 @@ int main(void)
                 else
                 {
                     printf("\n    Таблица ключей отсортирована\n");
-
+                    print_key_table(tab);
+                    break;
                 }
 
         }

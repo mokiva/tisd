@@ -732,6 +732,10 @@ int sort_key_table(table *tab)
                 int temp = tab -> key_instances[j + 1].key_value;
                 tab -> key_instances[j + 1].key_value = tab -> key_instances[j].key_value;
                 tab -> key_instances[j].key_value = temp;
+
+                temp = tab -> key_instances[j + 1].key_index;
+                tab -> key_instances[j + 1].key_index = tab -> key_instances[j].key_index;
+                tab -> key_instances[j].key_index = temp;
             }
         }
     }
@@ -746,6 +750,7 @@ void print_key_table(table tab)
 
     for (int i = 0; i < tab.fields_count; ++i)
     {
-
+        printf("%30d", tab.key_instances[i].key_index);
+        printf("%30d\n", tab.key_instances[i].key_value);
     }
 }
