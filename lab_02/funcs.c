@@ -67,16 +67,16 @@ int load_table(table *tab)
         int j = 0;
         char buffer_author_surname[BUFFER_LENGTH + 1] = { '\0' };
 
+        getc(file); // съедает лишний '\n' перед новой строкой
+
         while ((ch = getc(file)) != ';' && j < BUFFER_LENGTH)
         {
             buffer_author_surname[j] = (char) ch;
             ++j;
         }
 
-        if (getc(file) != ';')
-            return STRING_OVERFLOW;
-
         strncpy(tab -> literatures_instances[i].author_surname, buffer_author_surname, BUFFER_LENGTH + 1);
+        printf("\n|%s|\n", tab ->literatures_instances[i].author_surname);
 
         // заполнение поля названия книги
         j = 0;
@@ -89,10 +89,8 @@ int load_table(table *tab)
             ++j;
         }
 
-        if (getc(file) != ';')
-            return STRING_OVERFLOW;
-
         strncpy(tab -> literatures_instances[i].book_title, buffer_book_title, BUFFER_LENGTH + 1);
+        printf("|%s|\n", tab ->literatures_instances[i].book_title);
 
         // заполнение поля издателя книги
         j = 0;
@@ -104,10 +102,8 @@ int load_table(table *tab)
             ++j;
         }
 
-        if (getc(file) != ';')
-            return STRING_OVERFLOW;
-
         strncpy(tab -> literatures_instances[i].publisher_name, buffer_publisher_name, BUFFER_LENGTH + 1);
+        printf("|%s|\n", tab ->literatures_instances[i].publisher_name);
 
         // заполнение количества страниц
         j = 0;
@@ -119,18 +115,19 @@ int load_table(table *tab)
             ++j;
         }
 
-        if (getc(file) != ';')
-            return STRING_OVERFLOW;
-
         for (int k = 0; k < j; ++k)
+        {
             if (isdigit(buffer_number_of_pages[k]) == 0)
+            {
                 return BAD_DIGIT;
-
+            }
+        }
         int digit = (int) strtol(buffer_number_of_pages, NULL, 10);
         if (digit > 99999 || digit <= 0 || errno == ERANGE)
             return BAD_CONVERSION_TO_DIGIT;
 
         tab -> literatures_instances[i].number_of_pages = digit;
+        printf("|%d|\n", tab ->literatures_instances[i].number_of_pages);
 
         // заполнение вида литературы
         j = 0;
@@ -142,16 +139,19 @@ int load_table(table *tab)
             ++j;
         }
 
-        if (getc(file) != ';')
-            return STRING_OVERFLOW;
-
         for (int k = 0; k < j; ++k)
+        {
             if (isdigit(buffer_book_type[k]) == 0)
+            {
                 return BAD_DIGIT;
-
+            }
+        }
         digit = (int) strtol(buffer_book_type, NULL, 10);
         if (digit != 1 && digit != 2 && digit != 3)
             return BAD_LIT_TYPE;
+
+        tab -> literatures_instances[i].int_type = digit;
+        printf("|%d|\n", tab ->literatures_instances[i].int_type);
 
         // если литература техническая
         if (digit == 1)
@@ -167,34 +167,32 @@ int load_table(table *tab)
                 ++j;
             }
 
-            if (getc(file) != ';')
-                return STRING_OVERFLOW;
-
             strncpy(tab -> literatures_instances[i].type.technical_type.sphere, buffer_sphere_name, BUFFER_LENGTH + 1);
-
+            printf("|%s|\n", tab ->literatures_instances[i].type.technical_type.sphere);
 
             // заполнение отечественная или переводная
             j = 0;
-            char buffer_national_or_import[BUFFER_LENGTH + 1] = { '\0' };
+            char buffer_domestic_or_translated[BUFFER_LENGTH + 1] = { '\0' };
 
             while ((ch = getc(file)) != ';' && j < BUFFER_LENGTH)
             {
-                buffer_national_or_import[j] = (char) ch;
+                buffer_domestic_or_translated[j] = (char) ch;
                 ++j;
             }
 
-            if (getc(file) != ';')
-                return STRING_OVERFLOW;
-
             for (int k = 0; k < j; ++k)
-                if (isdigit(buffer_national_or_import[k]) == 0)
+            {
+                if (isdigit(buffer_domestic_or_translated[k]) == 0)
+                {
                     return BAD_DIGIT;
-
-            digit = (int) strtol(buffer_national_or_import, NULL, 10);
+                }
+            }
+            digit = (int) strtol(buffer_domestic_or_translated, NULL, 10);
             if (digit != 1 && digit != 2)
                 return BAD_LIT_TYPE;
 
-            tab -> literatures_instances[i].type.technical_type.year_of_publication = digit;
+            tab -> literatures_instances[i].type.technical_type.domestic_or_translated = digit;
+            printf("|%d|\n", tab ->literatures_instances[i].type.technical_type.domestic_or_translated);
 
             //заполнение года издания
             j = 0;
@@ -206,22 +204,23 @@ int load_table(table *tab)
                 ++j;
             }
 
-            if (getc(file) != ';')
-                return STRING_OVERFLOW;
-
             for (int k = 0; k < j; ++k)
+            {
                 if (isdigit(buffer_year_of_publication[k]) == 0)
+                {
                     return BAD_DIGIT;
+                }
+            }
 
             digit = (int) strtol(buffer_year_of_publication, NULL, 10);
             if (digit > 2022 || digit <= 0 || errno == ERANGE)
                 return BAD_LIT_TYPE;
 
             tab -> literatures_instances[i].type.technical_type.year_of_publication = digit;
-        }
+            printf("|%d|\n", tab ->literatures_instances[i].type.technical_type.year_of_publication);
 
-        // если литература художественная
-        if (digit == 2)
+        }
+        else if (digit == 2) // если литература художественная
         {
             j = 0;
             char buffer_artistic_type[BUFFER_LENGTH + 1] = { '\0' };
@@ -232,22 +231,21 @@ int load_table(table *tab)
                 ++j;
             }
 
-            if (getc(file) != ';')
-                return STRING_OVERFLOW;
-
             for (int k = 0; k < j; ++k)
+            {
                 if (isdigit(buffer_artistic_type[k]) == 0)
+                {
                     return BAD_DIGIT;
-
+                }
+            }
             digit = (int) strtol(buffer_artistic_type, NULL, 10);
             if (digit != 1 && digit != 2 && digit != 3)
                 return BAD_LIT_TYPE;
 
             tab -> literatures_instances[i].type.artistic_type.artistic_type = digit;
+            printf("|%d|\n", tab ->literatures_instances[i].type.artistic_type.artistic_type);
         }
-
-        // если литература детская
-        if (digit == 3)
+        else if (digit == 3) // если литература детская
         {
             j = 0;
             char buffer_children_type[BUFFER_LENGTH + 1] = { '\0' };
@@ -258,20 +256,22 @@ int load_table(table *tab)
                 ++j;
             }
 
-            if (getc(file) != ';')
-                return STRING_OVERFLOW;
-
             for (int k = 0; k < j; ++k)
+            {
                 if (isdigit(buffer_children_type[k]) == 0)
+                {
                     return BAD_DIGIT;
-
+                }
+            }
             digit = (int) strtol(buffer_children_type, NULL, 10);
             if (digit != 1 && digit != 2)
                 return BAD_LIT_TYPE;
 
             tab -> literatures_instances[i].type.children_type.children_type = digit;
+            printf("|%d|\n", tab ->literatures_instances[i].type.children_type.children_type);
         }
     }
 
     fclose(file);
+    return SUCCESS;
 }

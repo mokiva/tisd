@@ -44,6 +44,7 @@ struct literature_instance
     char book_title[BOOK_TITLE + 1];
     char publisher_name[PUBLISHER_NAME + 1];
     int number_of_pages;
+    int int_type;
     literature_type type;
 };
 

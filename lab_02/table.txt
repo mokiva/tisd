@@ -2,4 +2,4 @@
 Morozov;book name;izd book;1987;1;sphere name;1;1909;
 Shabash;skabash book;izd book;987;2;3;
 Nebritova;nebritova book;lalala;10;3;1;
-Vezirova;vezirka ne zefirka;Bulgarian book;3;2;
+Vezirova;vezirka ne zefirka;Bulgarian book;998;3;2;

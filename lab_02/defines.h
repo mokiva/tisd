@@ -6,7 +6,6 @@
 #define FAILURE                 1
 #define BAD_FILE                1
 #define BAD_SIZE_IN_FILE        2
-#define STRING_OVERFLOW         3
 #define BAD_DIGIT               4
 #define BAD_CONVERSION_TO_DIGIT 5
 #define BAD_LIT_TYPE            6

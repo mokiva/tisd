@@ -27,12 +27,12 @@ int main(void)
         {
             case '1':
                 rc = load_table(&tab);
+                printf("\n-----------%d--------\n", rc);
                 if (rc)
                 {
                     printf("\n    Ошибка загрузки таблицы из файла\n");
                     break;
                 }
-
         }
     }
 
