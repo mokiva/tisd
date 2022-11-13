@@ -651,3 +651,54 @@ void print_table(table tab)
         }
     }
 }
+
+int delete_record(table *tab)
+{
+    if (tab -> fields_count == 0)
+    {
+        printf("\n    В таблице нет записей\n");
+        return EMPTY_TABLE;
+    }
+
+    printf("\n    Введите значение поля \"количество страниц\": ");
+    char buffer_number_of_pages[BUFFER_LENGTH + 1] = { '\0' };
+    int count = 0;
+    int ch;
+
+    while ((ch = getchar()) != '\n')
+    {
+        if (count < BUFFER_LENGTH)
+            buffer_number_of_pages[count] = (char)ch;
+
+        ++count;
+    }
+
+    if (count > BUFFER_LENGTH)
+        return LONG_INPUT;
+
+    if (buffer_number_of_pages[0] == '\n' || buffer_number_of_pages[0] == '\0' || buffer_number_of_pages[0] == ' ')
+        return EMPTY_FIELD;
+
+    for (int i = 0; i < count; ++i)
+        if (isdigit(buffer_number_of_pages[i]) == 0)
+            return BAD_DIGIT;
+
+    int digit = (int)strtol(buffer_number_of_pages, NULL, 10);
+    if (digit <= 0 || digit > 99999 || errno == ERANGE)
+        return BAD_CONVERSION_TO_DIGIT;
+
+    for (int i = 0; i < tab -> fields_count; ++i)
+    {
+        if (tab -> literatures_instances[i].number_of_pages == digit)
+        {
+            for (int j = i; j < tab -> fields_count - 1; ++j)
+                tab -> literatures_instances[j] = tab -> literatures_instances[j + 1];
+
+            tab -> fields_count -= 1;
+
+            --i;
+        }
+    }
+
+    return SUCCESS;
+}

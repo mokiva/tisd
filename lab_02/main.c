@@ -56,11 +56,14 @@ int main(void)
                 rc = delete_record(&tab);
                 if (rc)
                 {
-
+                    printf("\n    Ошибка удаления записи(ей) структуры\n");
+                    break;
                 }
                 else
                 {
-
+                    printf("\n    Все записи по данному значению поля удалены успешно\n");
+                    print_table(tab);
+                    break;
                 }
         }
     }

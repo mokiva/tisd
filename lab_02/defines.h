@@ -12,6 +12,7 @@
 #define LONG_INPUT              7
 #define BAD_FIELDS_COUNT        8
 #define EMPTY_FIELD             9
+#define EMPTY_TABLE            10
 
 // константы
 #define AUTHOR_SURNAME           30

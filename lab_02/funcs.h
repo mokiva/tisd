@@ -21,6 +21,6 @@ int append_record(table *tab);
 void print_table(table tab);
 
 // Удаление из таблицы по количеству страниц
-int delete_record(table *tab)
+int delete_record(table *tab);
 
 #endif
