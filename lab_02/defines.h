@@ -20,7 +20,7 @@
 #define PUBLISHER_NAME           30
 #define SPHERE_NAME              30
 #define BUFFER_LENGTH            30
-#define MAX_FIELDS               99
+#define MAX_FIELDS               999
 #define EXIT                    '0'
 #define FILE_WITH_TABLE "table.txt"
 
