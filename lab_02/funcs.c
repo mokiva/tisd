@@ -19,8 +19,8 @@ void print_main_message(void)
            "    5. Вывод упорядоченной исходной таблицы\n"
            "    6. Вывод упорядоченной исходной таблицы, используя упорядоченную таблицу ключей\n"
            "    7. Вывод результатов сравнения эффективности работы программы при обработке данных в исходной таблице и в таблице ключей\n"
-           "    8. Вывод таблицы\n"
-           "    9. Вывод таблицы ключей\n\n");
+           "    8. Вывод таблицы и таблицы ключей\n"
+           "    9. Поиск списка отечественной технической литературы по указанной отрасли указанного года\n\n");
 }
 
 int get_choice(int *choice)
@@ -928,6 +928,78 @@ int analysis(table *tab)
     printf("    Quick%21ld%30ld%30ld%30ld\n", sizeof(tab -> key_instances[0]) * tab -> fields_count,
             sum_qkt, sizeof(tab -> literatures_instances[0]) * tab -> fields_count,
             sum_qt);
+
+    return SUCCESS;
+}
+
+int search_domestic(table tab)
+{
+    if (tab.fields_count == 0)
+        return EMPTY_TABLE;
+
+    // вид сферы
+    printf("\n    Введите сферу книги: ");
+    char buffer_sphere[BUFFER_LENGTH + 1] = { '\0' };
+    int count = 0;
+    int ch;
+
+    while ((ch = getchar()) != '\n')
+    {
+        if (count < BUFFER_LENGTH)
+            buffer_sphere[count] = (char)ch;
+
+        ++count;
+    }
+
+    if (count > BUFFER_LENGTH)
+        return LONG_INPUT;
+
+    if (buffer_sphere[0] == '\n' || buffer_sphere[0] == '\0' || buffer_sphere[0] == ' ')
+        return EMPTY_FIELD;
+
+    // год издания
+    printf("\n    Укажите год издания книги: ");
+    char buffer_year_of_publication[BUFFER_LENGTH + 1] = { '\0' };
+    count = 0;
+
+    while ((ch = getchar()) != '\n')
+    {
+        if (count < BUFFER_LENGTH)
+            buffer_year_of_publication[count] = (char)ch;
+
+        ++count;
+    }
+
+    if (buffer_year_of_publication[0] == '\n' || buffer_year_of_publication[0] == '\0' || buffer_year_of_publication[0] == ' ')
+        return EMPTY_FIELD;
+
+    if (count > BUFFER_LENGTH)
+        return LONG_INPUT;
+
+    for (int i = 0; i < count; ++i)
+        if (isdigit(buffer_year_of_publication[i]) == 0)
+            return BAD_DIGIT;
+
+    int digit = (int)strtol(buffer_year_of_publication, NULL, 10);
+    if (digit > 2022 || digit <= 0 || errno == ERANGE)
+        return BAD_CONVERSION_TO_DIGIT;
+
+    // Поиск
+    for (int i = 0; i < tab.fields_count; ++i)
+    {
+        if (tab.literatures_instances[i].int_type == 1 && strncmp(tab.literatures_instances[i].type.technical_type.sphere, buffer_sphere, BUFFER_LENGTH + 1) == 0
+        && tab.literatures_instances[i].type.technical_type.domestic_or_translated == 1 && tab.literatures_instances[i].type.technical_type.year_of_publication == digit)
+        {
+            printf("\n%30s", tab.literatures_instances[i].author_surname);
+            printf("%30s", tab.literatures_instances[i].book_title);
+            printf("%30s", tab.literatures_instances[i].publisher_name);
+            printf("%30d", tab.literatures_instances[i].number_of_pages);
+            printf("%30s", "technical");
+            printf("%30s", tab.literatures_instances[i].type.technical_type.sphere);
+            printf("%30s", "domestic");
+            printf("%30d\n", tab.literatures_instances[i].type.technical_type.year_of_publication);
+        }
+    }
 
     return SUCCESS;
 }

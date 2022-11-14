@@ -1,10 +1,12 @@
-96
+98
 Morozov;book name;izd book;1987;1;sphere name;1;1909;
 Shabash;skabash book;izd book;987;2;3;
 Nebritova;nebritova book;lalala;10;3;1;
 asd;asd;asd;10;3;1;
 Vezirova;vezirka ne zefirka;Bulgarian book;998;3;2;
 123;123;123;10;3;1;
+la;la;la;1;1;gg;1;100;
+la;la;la;1;1;gg;1;1909;
 Morozov;book name;izd book;1987;1;sphere name;1;1909;
 Shabash;skabash book;izd book;987;2;3;
 Nebritova;nebritova book;lalala;10;3;1;

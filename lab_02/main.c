@@ -116,24 +116,22 @@ int main(void)
                 if (tab.fields_count > 0)
                 {
                     print_table(tab);
-                    break;
-                }
-                else
-                {
-                    printf("\n    Таблицы пустая\n");
-                    break;
-                }
-            case '9':
-                if (tab.fields_count > 0)
-                {
                     print_key_table(tab);
                     break;
                 }
                 else
                 {
-                    printf("\n    Таблицы ключей пустая\n");
+                    printf("\n    Таблицы пустые\n");
                     break;
                 }
+            case '9':
+                rc = search_domestic(tab);
+                if (rc)
+                {
+                    printf("\n    Ошибка поиска\n");
+                    break;
+                }
+                break;
         }
     }
 
