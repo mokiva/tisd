@@ -797,4 +797,66 @@ int sort_table(table *tab)
             }
         }
     }
+
+    return SUCCESS;
+}
+
+void print_sort_table_by_key(table tab)
+{
+    printf("\n%30s", "Author surname");
+    printf("%30s", "Book title");
+    printf("%30s", "Publisher");
+    printf("%30s", "Number of pages");
+    printf("%30s", "Book type");
+    printf("%30s", "Technical sphere");
+    printf("%30s", "Domestic\\Import");
+    printf("%30s\n\n", "Year of publishing");
+
+    for (int i = 0; i < tab.fields_count; ++i)
+    {
+        printf("%30s", tab.literatures_instances[tab.key_instances[i].key_index].author_surname);
+        printf("%30s", tab.literatures_instances[tab.key_instances[i].key_index].book_title);
+        printf("%30s", tab.literatures_instances[tab.key_instances[i].key_index].publisher_name);
+        printf("%30d", tab.literatures_instances[tab.key_instances[i].key_index].number_of_pages);
+        if (tab.literatures_instances[tab.key_instances[i].key_index].int_type == 1)
+        {
+            printf("%30s", "technical");
+            printf("%30s", tab.literatures_instances[tab.key_instances[i].key_index].type.technical_type.sphere);
+            if (tab.literatures_instances[tab.key_instances[i].key_index].type.technical_type.domestic_or_translated == 1)
+            {
+                printf("%30s", "domestic");
+            }
+            else
+            {
+                printf("%30s", "import");
+            }
+            printf("%30d\n", tab.literatures_instances[tab.key_instances[i].key_index].type.technical_type.year_of_publication);
+        }
+        else if (tab.literatures_instances[tab.key_instances[i].key_index].int_type == 2)
+        {
+            if (tab.literatures_instances[tab.key_instances[i].key_index].type.artistic_type.artistic_type == 1)
+            {
+                printf("%30s\n", "romance");
+            }
+            else if (tab.literatures_instances[tab.key_instances[i].key_index].type.artistic_type.artistic_type == 2)
+            {
+                printf("%30s\n", "piece");
+            }
+            else
+            {
+                printf("%30s\n", "poem");
+            }
+        }
+        else
+        {
+            if (tab.literatures_instances[tab.key_instances[i].key_index].type.children_type.children_type == 1)
+            {
+                printf("%30s\n", "fairy tail");
+            }
+            else
+            {
+                printf("%30s\n", "poem");
+            }
+        }
+    }
 }

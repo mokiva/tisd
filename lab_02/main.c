@@ -80,6 +80,29 @@ int main(void)
                 }
             case '5':
                 rc = sort_table(&tab);
+                if (rc)
+                {
+                    printf("\n    Таблица пустая\n");
+                    break;
+                }
+                else
+                {
+                    printf("\n    Таблица отсортирована успешно");
+                    print_table(tab);
+                    break;
+                }
+            case '6':
+                rc = sort_key_table(&tab);
+                if (rc)
+                {
+                    printf("\n    Таблицы ключей пустая\n");
+                    break;
+                }
+                else
+                {
+                    print_sort_table_by_key(tab);
+                    break;
+                }
         }
     }
 

@@ -30,4 +30,7 @@ void print_key_table(table tab);
 // Сортировка таблицы
 int sort_table(table *tab);
 
+// Печать отсортированной таблицы по отсортированной таблице ключей
+void print_sort_table_by_key(table tab);
+
 #endif
