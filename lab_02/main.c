@@ -103,6 +103,37 @@ int main(void)
                     print_sort_table_by_key(tab);
                     break;
                 }
+            case '7':
+                rc = analysis(&tab);
+                if (rc)
+                {
+                    printf("\n    Таблица пустая\n");
+                    break;
+                }
+                else
+                    break;
+            case '8':
+                if (tab.fields_count > 0)
+                {
+                    print_table(tab);
+                    break;
+                }
+                else
+                {
+                    printf("\n    Таблицы пустая\n");
+                    break;
+                }
+            case '9':
+                if (tab.fields_count > 0)
+                {
+                    print_key_table(tab);
+                    break;
+                }
+                else
+                {
+                    printf("\n    Таблицы ключей пустая\n");
+                    break;
+                }
         }
     }
 

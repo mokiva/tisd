@@ -33,4 +33,19 @@ int sort_table(table *tab);
 // Печать отсортированной таблицы по отсортированной таблице ключей
 void print_sort_table_by_key(table tab);
 
+// Сортировка таблицы qsort
+int qsort_table(table *tab);
+
+// Сортировка таблицы ключей qsort
+int qsort_key_table(table *tab);
+
+// Компаратор для обычной таблицы
+int table_comparator(const void *first, const void *second);
+
+// Компаратор для таблицы ключей
+int key_table_comparator(const void *first, const void *second);
+
+// Функция сравнения времени для разных сортировок для разных таблиц
+int analysis(table *tab);
+
 #endif

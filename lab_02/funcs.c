@@ -3,6 +3,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <errno.h>
+#include <time.h>
 
 #include "defines.h"
 #include "funcs.h"
@@ -18,8 +19,8 @@ void print_main_message(void)
            "    5. Вывод упорядоченной исходной таблицы\n"
            "    6. Вывод упорядоченной исходной таблицы, используя упорядоченную таблицу ключей\n"
            "    7. Вывод результатов сравнения эффективности работы программы при обработке данных в исходной таблице и в таблице ключей\n"
-           "    8. Вывод результатов использования различных алгоритмов сортировок для таблицы ключей\n"
-           "    9. Вывод результатов использования различных алгоритмов сортировок для исходной таблицы\n\n");
+           "    8. Вывод таблицы\n"
+           "    9. Вывод таблицы ключей\n\n");
 }
 
 int get_choice(int *choice)
@@ -60,11 +61,11 @@ int load_table(table *tab)
     if (size <= 0)
         return BAD_SIZE_IN_FILE;
 
-    tab -> fields_count += size;
+    tab -> fields_count = size;
     if (tab -> fields_count > MAX_FIELDS)
         return BAD_FIELDS_COUNT;
 
-    for (int i = tab -> fields_count - size; i < tab -> fields_count; ++i)
+    for (int i = 0; i < tab -> fields_count; ++i)
     {
         // заполнение поля фамилии автора
         int ch;
@@ -859,4 +860,100 @@ void print_sort_table_by_key(table tab)
             }
         }
     }
+}
+
+int table_comparator(const void *first, const void *second)
+{
+    return ((literature_instance *)(first)) -> number_of_pages - ((literature_instance *)(second)) -> number_of_pages;
+}
+
+int key_table_comparator(const void *first, const void *second)
+{
+    return ((key_struct *)(first)) -> key_value - ((key_struct *)(second)) -> key_value;
+}
+
+// Сортировка таблицы ключей qsort
+int qsort_table(table *tab)
+{
+    if (tab -> fields_count == 0)
+        return EMPTY_TABLE;
+
+    qsort(&tab -> literatures_instances[0], tab -> fields_count, sizeof(tab -> literatures_instances[0]), table_comparator);
+
+    return SUCCESS;
+}
+
+// Сортировка таблицы qsort
+int qsort_key_table(table *tab)
+{
+    if (tab -> fields_count == 0)
+        return EMPTY_TABLE;
+
+    qsort(&tab -> key_instances[0], tab -> fields_count, sizeof(tab -> key_instances[0]), key_table_comparator);
+
+    return SUCCESS;
+}
+
+int analysis(table *tab)
+{
+    if (tab -> fields_count == 0)
+        return EMPTY_TABLE;
+
+    clock_t sum_skt = 0;
+    for (int i = 0; i < 1000; ++i)
+    {
+        load_table(tab);
+        clock_t start_sort_key_table = clock();
+        sort_key_table(tab);
+        clock_t end_sort_key_table = clock();
+        sum_skt += end_sort_key_table - start_sort_key_table;
+    }
+    sum_skt = sum_skt / 1000;
+
+    clock_t sum_qkt = 0;
+    for (int i = 0; i < 1000; ++i)
+    {
+        load_table(tab);
+        clock_t start_qsort_key_table = clock();
+        qsort_key_table(tab);
+        clock_t end_qsort_key_table = clock();
+        sum_qkt += end_qsort_key_table - start_qsort_key_table;
+    }
+    sum_qkt = sum_qkt / 1000;
+
+    clock_t sum_st = 0;
+    for (int i = 0; i < 1000; ++i)
+    {
+        load_table(tab);
+        clock_t start_sort_table = clock();
+        sort_table(tab);
+        clock_t end_sort_table = clock();
+        sum_st += end_sort_table - start_sort_table;
+    }
+    sum_st = sum_st / 1000;
+
+    clock_t sum_qt = 0;
+    for (int i = 0; i < 1000; ++i)
+    {
+        load_table(tab);
+        clock_t start_qsort_table = clock();
+        qsort_table(tab);
+        clock_t end_qsort_table = clock();
+        sum_qt += end_qsort_table - start_qsort_table;
+    }
+    sum_qt  = sum_qt / 1000;
+
+    printf("\n%30s", "Memory in bytes key table");
+    printf("%30s", "Time key table (mc_s)");
+    printf("%30s", "Memory in bytes table");
+    printf("%30s\n\n", "Time table (mc_s)");
+
+    printf("    Bubble%20ld%30ld%30ld%30ld\n", sizeof(tab -> key_instances[0]) * tab -> fields_count, sum_skt,
+            sizeof(tab -> literatures_instances[0]) * tab -> fields_count, sum_st);
+
+    printf("    Quick%21ld%30ld%30ld%30ld\n", sizeof(tab -> key_instances[0]) * tab -> fields_count,
+            sum_qkt, sizeof(tab -> literatures_instances[0]) * tab -> fields_count,
+            sum_qt);
+
+    return SUCCESS;
 }
