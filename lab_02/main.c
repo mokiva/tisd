@@ -35,7 +35,7 @@ int main(void)
                 }
                 else
                 {
-                    printf("\n    Таблицы загружена успешно\n");
+                    printf("\n    Таблица загружена успешно\n");
                     print_table(tab);
                     break;
                 }

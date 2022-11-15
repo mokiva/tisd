@@ -600,9 +600,7 @@ void print_table(table tab)
     printf("%30s", "Publisher");
     printf("%30s", "Number of pages");
     printf("%30s", "Book type");
-    printf("%30s", "Technical sphere");
-    printf("%30s", "Domestic\\Import");
-    printf("%30s\n\n", "Year of publishing");
+    printf("%50s\n\n", "Other");
 
     for (int i = 0; i < tab.fields_count; ++i)
     {
@@ -616,38 +614,42 @@ void print_table(table tab)
             printf("%30s", tab.literatures_instances[i].type.technical_type.sphere);
             if (tab.literatures_instances[i].type.technical_type.domestic_or_translated == 1)
             {
-                printf("%30s", "domestic");
+                printf("%10s", "domestic");
             }
             else
             {
-                printf("%30s", "import");
+                printf("%10s", "import");
             }
-            printf("%30d\n", tab.literatures_instances[i].type.technical_type.year_of_publication);
+            printf("%10d\n", tab.literatures_instances[i].type.technical_type.year_of_publication);
         }
         else if (tab.literatures_instances[i].int_type == 2)
         {
+            printf("%30s", "artistic");
+
             if (tab.literatures_instances[i].type.artistic_type.artistic_type == 1)
             {
-                printf("%30s\n", "romance");
+                printf("%50s\n", "romance");
             }
             else if (tab.literatures_instances[i].type.artistic_type.artistic_type == 2)
             {
-                printf("%30s\n", "piece");
+                printf("%50s\n", "piece");
             }
             else
             {
-                printf("%30s\n", "poem");
+                printf("%50s\n", "poem");
             }
         }
         else
         {
+            printf("%30s", "children");
+
             if (tab.literatures_instances[i].type.children_type.children_type == 1)
             {
-                printf("%30s\n", "fairy tail");
+                printf("%50s\n", "fairy tail");
             }
             else
             {
-                printf("%30s\n", "poem");
+                printf("%50s\n", "poem");
             }
         }
     }
@@ -710,7 +712,7 @@ int delete_record(table *tab)
             for (int j = i; j < tab -> fields_count - 1; ++j)
             {
                 tab->key_instances[j].key_value = tab->key_instances[j + 1].key_value;
-                tab->key_instances[j].key_index = tab->key_instances[j + 1].key_index;
+//                tab->key_instances[j].key_index = tab->key_instances[j + 1].key_index;
             }
 
             tab -> fields_count -= 1;
@@ -783,9 +785,7 @@ void print_sort_table_by_key(table tab)
     printf("%30s", "Publisher");
     printf("%30s", "Number of pages");
     printf("%30s", "Book type");
-    printf("%30s", "Technical sphere");
-    printf("%30s", "Domestic\\Import");
-    printf("%30s\n\n", "Year of publishing");
+    printf("%50s\n\n", "Other");
 
     for (int i = 0; i < tab.fields_count; ++i)
     {
@@ -799,38 +799,42 @@ void print_sort_table_by_key(table tab)
             printf("%30s", tab.literatures_instances[tab.key_instances[i].key_index].type.technical_type.sphere);
             if (tab.literatures_instances[tab.key_instances[i].key_index].type.technical_type.domestic_or_translated == 1)
             {
-                printf("%30s", "domestic");
+                printf("%10s", "domestic");
             }
             else
             {
-                printf("%30s", "import");
+                printf("%10s", "import");
             }
-            printf("%30d\n", tab.literatures_instances[tab.key_instances[i].key_index].type.technical_type.year_of_publication);
+            printf("%10d\n", tab.literatures_instances[tab.key_instances[i].key_index].type.technical_type.year_of_publication);
         }
         else if (tab.literatures_instances[tab.key_instances[i].key_index].int_type == 2)
         {
+            printf("%30s", "artistic");
+
             if (tab.literatures_instances[tab.key_instances[i].key_index].type.artistic_type.artistic_type == 1)
             {
-                printf("%30s\n", "romance");
+                printf("%50s\n", "romance");
             }
             else if (tab.literatures_instances[tab.key_instances[i].key_index].type.artistic_type.artistic_type == 2)
             {
-                printf("%30s\n", "piece");
+                printf("%50s\n", "piece");
             }
             else
             {
-                printf("%30s\n", "poem");
+                printf("%50s\n", "poem");
             }
         }
         else
         {
+            printf("%30s", "children");
+
             if (tab.literatures_instances[tab.key_instances[i].key_index].type.children_type.children_type == 1)
             {
-                printf("%30s\n", "fairy tail");
+                printf("%50s\n", "fairy tail");
             }
             else
             {
-                printf("%30s\n", "poem");
+                printf("%50s\n", "poem");
             }
         }
     }
@@ -846,7 +850,6 @@ int key_table_comparator(const void *first, const void *second)
     return ((key_struct *)(first)) -> key_value - ((key_struct *)(second)) -> key_value;
 }
 
-// Сортировка таблицы ключей qsort
 int qsort_table(table *tab)
 {
     if (tab -> fields_count == 0)
@@ -857,7 +860,6 @@ int qsort_table(table *tab)
     return SUCCESS;
 }
 
-// Сортировка таблицы qsort
 int qsort_key_table(table *tab)
 {
     if (tab -> fields_count == 0)
