@@ -36,7 +36,6 @@ int main(void)
                 else
                 {
                     printf("\n    Таблица загружена успешно\n");
-                    print_table(tab);
                     break;
                 }
             case '2':
@@ -49,7 +48,6 @@ int main(void)
                 else
                 {
                     printf("\n    Структура добавлена успешно\n");
-                    print_table(tab);
                     break;
                 }
             case '3':
@@ -62,7 +60,6 @@ int main(void)
                 else
                 {
                     printf("\n    Все записи по данному значению поля удалены успешно\n");
-                    print_table(tab);
                     break;
                 }
             case '4':
@@ -74,7 +71,6 @@ int main(void)
                 }
                 else
                 {
-                    printf("\n    Таблица ключей отсортирована\n");
                     print_key_table(tab);
                     break;
                 }
@@ -87,7 +83,6 @@ int main(void)
                 }
                 else
                 {
-                    printf("\n    Таблица отсортирована успешно");
                     print_table(tab);
                     break;
                 }
@@ -104,14 +99,8 @@ int main(void)
                     break;
                 }
             case '7':
-                rc = analysis(&tab);
-                if (rc)
-                {
-                    printf("\n    Таблица пустая\n");
-                    break;
-                }
-                else
-                    break;
+                analysis(&tab);
+                break;
             case '8':
                 if (tab.fields_count > 0)
                 {

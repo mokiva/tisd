@@ -742,6 +742,9 @@ int sort_key_table(table *tab)
         }
     }
 
+    for (int i = 0; i < tab -> fields_count; ++i)
+        tab -> key_instances[i].key_index = i;
+
     return SUCCESS;
 }
 
@@ -870,11 +873,8 @@ int qsort_key_table(table *tab)
     return SUCCESS;
 }
 
-int analysis(table *tab)
+void analysis(table *tab)
 {
-    if (tab -> fields_count == 0)
-        return EMPTY_TABLE;
-
     clock_t sum_skt = 0;
     for (int i = 0; i < 1000; ++i)
     {
@@ -931,7 +931,7 @@ int analysis(table *tab)
             sum_qkt, sizeof(tab -> literatures_instances[0]) * tab -> fields_count,
             sum_qt);
 
-    return SUCCESS;
+    load_table(tab);
 }
 
 int search_domestic(table tab)
@@ -987,11 +987,14 @@ int search_domestic(table tab)
         return BAD_CONVERSION_TO_DIGIT;
 
     // Поиск
+    size_t flag = 0;
     for (int i = 0; i < tab.fields_count; ++i)
     {
         if (tab.literatures_instances[i].int_type == 1 && strncmp(tab.literatures_instances[i].type.technical_type.sphere, buffer_sphere, BUFFER_LENGTH + 1) == 0
         && tab.literatures_instances[i].type.technical_type.domestic_or_translated == 1 && tab.literatures_instances[i].type.technical_type.year_of_publication == digit)
         {
+            flag = 1;
+
             printf("\n%30s", tab.literatures_instances[i].author_surname);
             printf("%30s", tab.literatures_instances[i].book_title);
             printf("%30s", tab.literatures_instances[i].publisher_name);
@@ -1002,6 +1005,9 @@ int search_domestic(table tab)
             printf("%30d\n", tab.literatures_instances[i].type.technical_type.year_of_publication);
         }
     }
+
+    if (flag == 0)
+        printf("\n    Нет таких записей (Сфера, Отечественная, год издания)\n");
 
     return SUCCESS;
 }

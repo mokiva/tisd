@@ -46,7 +46,7 @@ int table_comparator(const void *first, const void *second);
 int key_table_comparator(const void *first, const void *second);
 
 // Функция сравнения времени для разных сортировок для разных таблиц
-int analysis(table *tab);
+void analysis(table *tab);
 
 // Поиск списка отечественной технической литературы по указанной отрасли указанного года
 int search_domestic(table tab);
