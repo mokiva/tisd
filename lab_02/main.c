@@ -7,6 +7,7 @@
 int main(void)
 {
     int choice = 1;
+    int flag = 0;
     table tab;
     tab.fields_count = 0;
 
@@ -35,6 +36,7 @@ int main(void)
                 }
                 else
                 {
+                    flag = 0;
                     printf("\n    Таблица загружена успешно\n");
                     break;
                 }
@@ -51,16 +53,41 @@ int main(void)
                     break;
                 }
             case '3':
-                rc = delete_record(&tab);
-                if (rc)
+                if (tab.fields_count == 0)
                 {
-                    printf("\n    Ошибка удаления записи(ей) структуры\n");
+                    printf("\n    Таблица пустая\n");
                     break;
+                }
+
+                if (!flag)
+                {
+                    rc = delete_record(&tab);
+                    if (rc)
+                    {
+                        printf("\n    Ошибка удаления записи(ей) структуры\n");
+                        break;
+                    }
+                    else
+                    {
+                        printf("\n    Все записи по данному значению поля удалены успешно\n");
+                        break;
+                    }
                 }
                 else
                 {
-                    printf("\n    Все записи по данному значению поля удалены успешно\n");
-                    break;
+                    collect_new_key_table(&tab);
+                    rc = delete_record(&tab);
+                    if (rc)
+                    {
+                        printf("\n    Ошибка удаления записи(ей) структуры\n");
+                        break;
+                    }
+                    else
+                    {
+                        sort_key_table(&tab);
+                        printf("\n    Все записи по данному значению поля удалены успешно\n");
+                        break;
+                    }
                 }
             case '4':
                 rc = sort_key_table(&tab);
@@ -71,7 +98,8 @@ int main(void)
                 }
                 else
                 {
-                    print_key_table(tab);
+                    printf("\n    Таблицы ключей успешно отсортирована\n");
+                    flag = 1;
                     break;
                 }
             case '5':
@@ -83,7 +111,8 @@ int main(void)
                 }
                 else
                 {
-                    print_table(tab);
+                    printf("\n    Таблица успешно отсортирована\n");
+                    collect_new_key_table(&tab);
                     break;
                 }
             case '6':
@@ -96,6 +125,7 @@ int main(void)
                 else
                 {
                     print_sort_table_by_key(tab);
+                    flag = 1;
                     break;
                 }
             case '7':

@@ -15,9 +15,9 @@ void print_main_message(void)
            "    1. Загрузка таблицы из файла\n"
            "    2. Добавление записи в конец таблицы\n"
            "    3. Удаление записи таблицы по значению количества страниц\n"
-           "    4. Просмотр отсортированной таблицы ключей\n"
-           "    5. Вывод упорядоченной исходной таблицы\n"
-           "    6. Вывод упорядоченной исходной таблицы, используя упорядоченную таблицу ключей\n"
+           "    4. Сортировка таблицы ключей\n"
+           "    5. Сортировка исходной таблицы\n"
+           "    6. Вывод сортировки исходной таблицы, используя отсортированную таблицу ключей\n"
            "    7. Вывод результатов сравнения эффективности работы программы при обработке данных в исходной таблице и в таблице ключей\n"
            "    8. Вывод таблицы и таблицы ключей\n"
            "    9. Поиск списка отечественной технической литературы по указанной отрасли указанного года\n\n");
@@ -709,11 +709,16 @@ int delete_record(table *tab)
     {
         if (tab -> key_instances[i].key_value == digit)
         {
+//            int index = tab -> key_instances[i].key_index;
+
             for (int j = i; j < tab -> fields_count - 1; ++j)
-            {
                 tab->key_instances[j].key_value = tab->key_instances[j + 1].key_value;
-//                tab->key_instances[j].key_index = tab->key_instances[j + 1].key_index;
-            }
+
+//            for (int k = 0; k < tab -> fields_count; ++k)
+//            {
+//                if (tab -> key_instances[k].key_index > index)
+//                    --tab -> key_instances[k].key_index;
+//            }
 
             tab -> fields_count -= 1;
 
@@ -742,9 +747,6 @@ int sort_key_table(table *tab)
         }
     }
 
-    for (int i = 0; i < tab -> fields_count; ++i)
-        tab -> key_instances[i].key_index = i;
-
     return SUCCESS;
 }
 
@@ -771,14 +773,23 @@ int sort_table(table *tab)
         {
             if (tab -> literatures_instances[j].number_of_pages > tab -> literatures_instances[j + 1].number_of_pages)
             {
-                literature_instance temp = tab -> literatures_instances[j + 1];
+                literature_instance temp_1 = tab -> literatures_instances[j + 1];
                 tab -> literatures_instances[j + 1] = tab -> literatures_instances[j];
-                tab -> literatures_instances[j] = temp;
+                tab -> literatures_instances[j] = temp_1;
             }
         }
     }
 
     return SUCCESS;
+}
+
+void collect_new_key_table(table *tab)
+{
+    for (int i = 0; i < tab -> fields_count; ++i)
+    {
+        tab -> key_instances[i].key_index = i;
+        tab -> key_instances[i].key_value = tab -> literatures_instances[i].number_of_pages;
+    }
 }
 
 void print_sort_table_by_key(table tab)

@@ -51,4 +51,7 @@ void analysis(table *tab);
 // Поиск списка отечественной технической литературы по указанной отрасли указанного года
 int search_domestic(table tab);
 
+// Пересобрать заново таблицу ключей
+void collect_new_key_table(table *tab);
+
 #endif
