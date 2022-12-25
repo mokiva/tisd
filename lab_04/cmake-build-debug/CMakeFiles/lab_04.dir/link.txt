@@ -1,1 +1,1 @@
-/usr/bin/cc -g CMakeFiles/lab_04.dir/main.c.o -o lab_04 
+/usr/bin/cc -g CMakeFiles/lab_04.dir/src/main.c.o CMakeFiles/lab_04.dir/src/text.c.o CMakeFiles/lab_04.dir/src/list.c.o CMakeFiles/lab_04.dir/src/expr.c.o -o lab_04 

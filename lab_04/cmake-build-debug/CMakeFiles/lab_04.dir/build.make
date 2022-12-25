@@ -76,30 +76,75 @@ include CMakeFiles/lab_04.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/lab_04.dir/flags.make
 
-CMakeFiles/lab_04.dir/main.c.o: CMakeFiles/lab_04.dir/flags.make
-CMakeFiles/lab_04.dir/main.c.o: ../main.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rikusha/tisd/lab_04/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/lab_04.dir/main.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/lab_04.dir/main.c.o -c /home/rikusha/tisd/lab_04/main.c
+CMakeFiles/lab_04.dir/src/main.c.o: CMakeFiles/lab_04.dir/flags.make
+CMakeFiles/lab_04.dir/src/main.c.o: ../src/main.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rikusha/tisd/lab_04/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/lab_04.dir/src/main.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/lab_04.dir/src/main.c.o -c /home/rikusha/tisd/lab_04/src/main.c
 
-CMakeFiles/lab_04.dir/main.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/lab_04.dir/main.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/rikusha/tisd/lab_04/main.c > CMakeFiles/lab_04.dir/main.c.i
+CMakeFiles/lab_04.dir/src/main.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/lab_04.dir/src/main.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/rikusha/tisd/lab_04/src/main.c > CMakeFiles/lab_04.dir/src/main.c.i
 
-CMakeFiles/lab_04.dir/main.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/lab_04.dir/main.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/rikusha/tisd/lab_04/main.c -o CMakeFiles/lab_04.dir/main.c.s
+CMakeFiles/lab_04.dir/src/main.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/lab_04.dir/src/main.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/rikusha/tisd/lab_04/src/main.c -o CMakeFiles/lab_04.dir/src/main.c.s
+
+CMakeFiles/lab_04.dir/src/text.c.o: CMakeFiles/lab_04.dir/flags.make
+CMakeFiles/lab_04.dir/src/text.c.o: ../src/text.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rikusha/tisd/lab_04/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/lab_04.dir/src/text.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/lab_04.dir/src/text.c.o -c /home/rikusha/tisd/lab_04/src/text.c
+
+CMakeFiles/lab_04.dir/src/text.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/lab_04.dir/src/text.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/rikusha/tisd/lab_04/src/text.c > CMakeFiles/lab_04.dir/src/text.c.i
+
+CMakeFiles/lab_04.dir/src/text.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/lab_04.dir/src/text.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/rikusha/tisd/lab_04/src/text.c -o CMakeFiles/lab_04.dir/src/text.c.s
+
+CMakeFiles/lab_04.dir/src/list.c.o: CMakeFiles/lab_04.dir/flags.make
+CMakeFiles/lab_04.dir/src/list.c.o: ../src/list.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rikusha/tisd/lab_04/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/lab_04.dir/src/list.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/lab_04.dir/src/list.c.o -c /home/rikusha/tisd/lab_04/src/list.c
+
+CMakeFiles/lab_04.dir/src/list.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/lab_04.dir/src/list.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/rikusha/tisd/lab_04/src/list.c > CMakeFiles/lab_04.dir/src/list.c.i
+
+CMakeFiles/lab_04.dir/src/list.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/lab_04.dir/src/list.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/rikusha/tisd/lab_04/src/list.c -o CMakeFiles/lab_04.dir/src/list.c.s
+
+CMakeFiles/lab_04.dir/src/expr.c.o: CMakeFiles/lab_04.dir/flags.make
+CMakeFiles/lab_04.dir/src/expr.c.o: ../src/expr.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rikusha/tisd/lab_04/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/lab_04.dir/src/expr.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/lab_04.dir/src/expr.c.o -c /home/rikusha/tisd/lab_04/src/expr.c
+
+CMakeFiles/lab_04.dir/src/expr.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/lab_04.dir/src/expr.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/rikusha/tisd/lab_04/src/expr.c > CMakeFiles/lab_04.dir/src/expr.c.i
+
+CMakeFiles/lab_04.dir/src/expr.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/lab_04.dir/src/expr.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/rikusha/tisd/lab_04/src/expr.c -o CMakeFiles/lab_04.dir/src/expr.c.s
 
 # Object files for target lab_04
 lab_04_OBJECTS = \
-"CMakeFiles/lab_04.dir/main.c.o"
+"CMakeFiles/lab_04.dir/src/main.c.o" \
+"CMakeFiles/lab_04.dir/src/text.c.o" \
+"CMakeFiles/lab_04.dir/src/list.c.o" \
+"CMakeFiles/lab_04.dir/src/expr.c.o"
 
 # External object files for target lab_04
 lab_04_EXTERNAL_OBJECTS =
 
-lab_04: CMakeFiles/lab_04.dir/main.c.o
+lab_04: CMakeFiles/lab_04.dir/src/main.c.o
+lab_04: CMakeFiles/lab_04.dir/src/text.c.o
+lab_04: CMakeFiles/lab_04.dir/src/list.c.o
+lab_04: CMakeFiles/lab_04.dir/src/expr.c.o
 lab_04: CMakeFiles/lab_04.dir/build.make
 lab_04: CMakeFiles/lab_04.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/rikusha/tisd/lab_04/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking C executable lab_04"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/rikusha/tisd/lab_04/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking C executable lab_04"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/lab_04.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

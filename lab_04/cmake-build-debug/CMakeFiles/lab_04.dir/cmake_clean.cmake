@@ -1,5 +1,8 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/lab_04.dir/main.c.o"
+  "CMakeFiles/lab_04.dir/src/expr.c.o"
+  "CMakeFiles/lab_04.dir/src/list.c.o"
+  "CMakeFiles/lab_04.dir/src/main.c.o"
+  "CMakeFiles/lab_04.dir/src/text.c.o"
   "lab_04"
   "lab_04.pdb"
 )

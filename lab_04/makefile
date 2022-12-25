@@ -11,7 +11,7 @@ UNT := unit_tests/
 
 all: app.exe #unit_tests.exe
 
-app.exe: $(OUT)main.o
+app.exe: $(OUT)main.o $(OUT)text.o $(OUT)list.o
 	$(CC) -o $@ $^
 
 #unit_tests.exe: $(OUT)check_funcs.o $(OUT)funcs.o

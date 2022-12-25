@@ -44,6 +44,7 @@
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
+					<Add directory="/home/rikusha/tisd/lab_04/inc"/>
 					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/10/include"/>
 					<Add directory="/usr/local/include"/>
 					<Add directory="/usr/include/x86_64-linux-gnu"/>
@@ -63,6 +64,7 @@
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
+					<Add directory="/home/rikusha/tisd/lab_04/inc"/>
 					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/10/include"/>
 					<Add directory="/usr/local/include"/>
 					<Add directory="/usr/include/x86_64-linux-gnu"/>
@@ -76,7 +78,31 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/home/rikusha/tisd/lab_04/main.c">
+		<Unit filename="/home/rikusha/tisd/lab_04/inc/adt.h">
+			<Option target="lab_04"/>
+		</Unit>
+		<Unit filename="/home/rikusha/tisd/lab_04/inc/defs.h">
+			<Option target="lab_04"/>
+		</Unit>
+		<Unit filename="/home/rikusha/tisd/lab_04/inc/expr.h">
+			<Option target="lab_04"/>
+		</Unit>
+		<Unit filename="/home/rikusha/tisd/lab_04/inc/list.h">
+			<Option target="lab_04"/>
+		</Unit>
+		<Unit filename="/home/rikusha/tisd/lab_04/inc/text.h">
+			<Option target="lab_04"/>
+		</Unit>
+		<Unit filename="/home/rikusha/tisd/lab_04/src/expr.c">
+			<Option target="lab_04"/>
+		</Unit>
+		<Unit filename="/home/rikusha/tisd/lab_04/src/list.c">
+			<Option target="lab_04"/>
+		</Unit>
+		<Unit filename="/home/rikusha/tisd/lab_04/src/main.c">
+			<Option target="lab_04"/>
+		</Unit>
+		<Unit filename="/home/rikusha/tisd/lab_04/src/text.c">
 			<Option target="lab_04"/>
 		</Unit>
 		<Unit filename="/home/rikusha/tisd/lab_04/CMakeLists.txt">

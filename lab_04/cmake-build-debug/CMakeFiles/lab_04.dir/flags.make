@@ -4,7 +4,7 @@
 # compile C with /usr/bin/cc
 C_DEFINES = 
 
-C_INCLUDES = 
+C_INCLUDES = -I/home/rikusha/tisd/lab_04/inc
 
 C_FLAGS = -g -std=gnu99
 

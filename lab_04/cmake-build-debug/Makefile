@@ -142,32 +142,113 @@ lab_04/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab_04.dir/build.make CMakeFiles/lab_04.dir/build
 .PHONY : lab_04/fast
 
-main.o: main.c.o
+src/expr.o: src/expr.c.o
 
-.PHONY : main.o
+.PHONY : src/expr.o
 
 # target to build an object file
-main.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab_04.dir/build.make CMakeFiles/lab_04.dir/main.c.o
-.PHONY : main.c.o
+src/expr.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab_04.dir/build.make CMakeFiles/lab_04.dir/src/expr.c.o
+.PHONY : src/expr.c.o
 
-main.i: main.c.i
+src/expr.i: src/expr.c.i
 
-.PHONY : main.i
+.PHONY : src/expr.i
 
 # target to preprocess a source file
-main.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab_04.dir/build.make CMakeFiles/lab_04.dir/main.c.i
-.PHONY : main.c.i
+src/expr.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab_04.dir/build.make CMakeFiles/lab_04.dir/src/expr.c.i
+.PHONY : src/expr.c.i
 
-main.s: main.c.s
+src/expr.s: src/expr.c.s
 
-.PHONY : main.s
+.PHONY : src/expr.s
 
 # target to generate assembly for a file
-main.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab_04.dir/build.make CMakeFiles/lab_04.dir/main.c.s
-.PHONY : main.c.s
+src/expr.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab_04.dir/build.make CMakeFiles/lab_04.dir/src/expr.c.s
+.PHONY : src/expr.c.s
+
+src/list.o: src/list.c.o
+
+.PHONY : src/list.o
+
+# target to build an object file
+src/list.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab_04.dir/build.make CMakeFiles/lab_04.dir/src/list.c.o
+.PHONY : src/list.c.o
+
+src/list.i: src/list.c.i
+
+.PHONY : src/list.i
+
+# target to preprocess a source file
+src/list.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab_04.dir/build.make CMakeFiles/lab_04.dir/src/list.c.i
+.PHONY : src/list.c.i
+
+src/list.s: src/list.c.s
+
+.PHONY : src/list.s
+
+# target to generate assembly for a file
+src/list.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab_04.dir/build.make CMakeFiles/lab_04.dir/src/list.c.s
+.PHONY : src/list.c.s
+
+src/main.o: src/main.c.o
+
+.PHONY : src/main.o
+
+# target to build an object file
+src/main.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab_04.dir/build.make CMakeFiles/lab_04.dir/src/main.c.o
+.PHONY : src/main.c.o
+
+src/main.i: src/main.c.i
+
+.PHONY : src/main.i
+
+# target to preprocess a source file
+src/main.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab_04.dir/build.make CMakeFiles/lab_04.dir/src/main.c.i
+.PHONY : src/main.c.i
+
+src/main.s: src/main.c.s
+
+.PHONY : src/main.s
+
+# target to generate assembly for a file
+src/main.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab_04.dir/build.make CMakeFiles/lab_04.dir/src/main.c.s
+.PHONY : src/main.c.s
+
+src/text.o: src/text.c.o
+
+.PHONY : src/text.o
+
+# target to build an object file
+src/text.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab_04.dir/build.make CMakeFiles/lab_04.dir/src/text.c.o
+.PHONY : src/text.c.o
+
+src/text.i: src/text.c.i
+
+.PHONY : src/text.i
+
+# target to preprocess a source file
+src/text.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab_04.dir/build.make CMakeFiles/lab_04.dir/src/text.c.i
+.PHONY : src/text.c.i
+
+src/text.s: src/text.c.s
+
+.PHONY : src/text.s
+
+# target to generate assembly for a file
+src/text.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab_04.dir/build.make CMakeFiles/lab_04.dir/src/text.c.s
+.PHONY : src/text.c.s
 
 # Help Target
 help:
@@ -178,9 +259,18 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... lab_04"
-	@echo "... main.o"
-	@echo "... main.i"
-	@echo "... main.s"
+	@echo "... src/expr.o"
+	@echo "... src/expr.i"
+	@echo "... src/expr.s"
+	@echo "... src/list.o"
+	@echo "... src/list.i"
+	@echo "... src/list.s"
+	@echo "... src/main.o"
+	@echo "... src/main.i"
+	@echo "... src/main.s"
+	@echo "... src/text.o"
+	@echo "... src/text.i"
+	@echo "... src/text.s"
 .PHONY : help
 
 
