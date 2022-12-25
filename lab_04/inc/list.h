@@ -21,6 +21,8 @@ void print_list(list_t *list);
 
 void print_addresses(array_clear_t arr);
 
-int expression_result(int *res);
+int calculate_expression(expression_t expression);
+
+int expression_result(int *result);
 
 #endif // __LIST_H__

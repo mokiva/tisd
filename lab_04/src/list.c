@@ -3,6 +3,7 @@
 
 #include "defs.h"
 #include "list.h"
+#include "expr.h"
 
 list_t* create_node(int num)
 {
@@ -181,18 +182,91 @@ void print_addresses(array_clear_t arr)
         printf("  %p\n", (void*) arr.arr_clear[i]);
 }
 
+int check_stack(list_t *list)
+{
+    return (!list) ? EMPTY : NOT_EMPTY;
+}
+
+int calculate_expression(expression_t expression)
+{
+    list_t *num_stack = NULL;
+    list_t *sym_stack = NULL;
+
+    for (int i = 0; i < expression.len; i++)
+    {
+        if (check_operation(expression.sym[i]))
+        {
+            int sign = translate_operation(expression.sym[i]);
+
+            if (!check_stack(sym_stack))
+                sym_stack = create_node(sign);
+
+            else
+            {
+                int level_cur = check_priority(sign);
+                int level_prev = check_priority(top_list(sym_stack));
+
+                if (level_cur > level_prev) // if priority is higher
+                {
+                    LOG_DEBUG("PUSH IT: c = %d, p = %d", level_cur, level_prev);
+                    push_node(&sym_stack, sign); // push in stack
+                }
+                else if (level_cur <= level_prev)// if priority is equal or lower
+                {
+                    count_operation_list(&num_stack, &sym_stack); // take 2 nums from stack and prev sign -> result in num_stack
+                    i--;
+                }
+            }
+        } // end sign parse
+        else
+        {
+            //printf("\n###in num parse###\n");
+            int num = read_num_from_arr_char(exp.sym, &i); // get num from stack
+            i -= 1;
+
+            //printf("\nnum = %d\n", num);
+
+            if (!check_clear_stack_list(num_stack))
+            {
+                num_stack = create_node(num);
+            }
+            else
+            {
+                push_node(&num_stack, num);
+            }
+
+            if (i + 1 == exp.len)
+            {
+                while (check_clear_stack_list(sym_stack)) // if operations are left after loop
+                {
+                    count_operation_list(&num_stack, &sym_stack);
+                }
+            }
+        } // end num parse
+
+        // puts("Stack nums now");
+        // print_list(num_stack);
+
+
+        // puts("Stack sign now");
+        // print_list(sym_stack);
+
+        // puts("");
+    }
+
+    return top_list(num_stack);
+}
+
 int expression_result(int *result)
 {
     expression_t expression;
 
-    int rc = read_expression(&exp);
+    int rc = read_expression(&expression);
 
-    if (rc != NO_MISTAKES)
-    {
+    if (rc != SUCCESS)
         return rc;
-    }
 
-    *res = calculate_list(exp);
+    *result = calculate_expression(expression);
 
-    return OK_COUNT
+    return SUCCESS;
 }
