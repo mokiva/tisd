@@ -5,6 +5,7 @@
 #include "adt.h"
 #include "list.h"
 #include "arr.h"
+#include "my_time.h"
 
 int main(void)
 {
@@ -89,9 +90,13 @@ int main(void)
         }
 
         if (option == 10)
+            time_counting();
     }
 
-    // free elems;
+    if (stack_list)
+    {
+        free_list(&stack_list);
+    }
 
     return SUCCESS;
 }

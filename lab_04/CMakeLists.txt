@@ -12,9 +12,11 @@ add_executable(lab_04
         inc/list.h
         inc/expr.h
         inc/arr.h
+        inc/my_time.h
 
         src/main.c
         src/text.c
         src/list.c
         src/expr.c
-        src/arr.c)
+        src/arr.c
+        src/my_time.c)

@@ -308,3 +308,15 @@ int expression_result_list(int *result)
 
     return SUCCESS;
 }
+
+void free_list(list_t **list)
+{
+    int len = (*list)->ind;
+
+    while (len >= 0)
+    {
+        pop_list(list);
+
+        len--;
+    }
+}

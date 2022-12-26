@@ -17,4 +17,7 @@
 #define EMPTY             0
 #define NOT_EMPTY         1
 
+#define RUNS 1000
+#define GHZ 3500000000
+
 #endif

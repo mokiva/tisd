@@ -33,4 +33,6 @@ int calculate_expression(expression_t expression);
 
 int expression_result_list(int *result);
 
+void free_list(list_t **list);
+
 #endif // __LIST_H__

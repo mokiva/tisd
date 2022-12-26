@@ -93,6 +93,9 @@
 		<Unit filename="/home/rikusha/tisd/lab_04/inc/list.h">
 			<Option target="lab_04"/>
 		</Unit>
+		<Unit filename="/home/rikusha/tisd/lab_04/inc/my_time.h">
+			<Option target="lab_04"/>
+		</Unit>
 		<Unit filename="/home/rikusha/tisd/lab_04/inc/text.h">
 			<Option target="lab_04"/>
 		</Unit>
@@ -106,6 +109,9 @@
 			<Option target="lab_04"/>
 		</Unit>
 		<Unit filename="/home/rikusha/tisd/lab_04/src/main.c">
+			<Option target="lab_04"/>
+		</Unit>
+		<Unit filename="/home/rikusha/tisd/lab_04/src/my_time,c">
 			<Option target="lab_04"/>
 		</Unit>
 		<Unit filename="/home/rikusha/tisd/lab_04/src/text.c">
