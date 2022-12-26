@@ -142,6 +142,33 @@ lab_04/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab_04.dir/build.make CMakeFiles/lab_04.dir/build
 .PHONY : lab_04/fast
 
+src/arr.o: src/arr.c.o
+
+.PHONY : src/arr.o
+
+# target to build an object file
+src/arr.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab_04.dir/build.make CMakeFiles/lab_04.dir/src/arr.c.o
+.PHONY : src/arr.c.o
+
+src/arr.i: src/arr.c.i
+
+.PHONY : src/arr.i
+
+# target to preprocess a source file
+src/arr.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab_04.dir/build.make CMakeFiles/lab_04.dir/src/arr.c.i
+.PHONY : src/arr.c.i
+
+src/arr.s: src/arr.c.s
+
+.PHONY : src/arr.s
+
+# target to generate assembly for a file
+src/arr.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab_04.dir/build.make CMakeFiles/lab_04.dir/src/arr.c.s
+.PHONY : src/arr.c.s
+
 src/expr.o: src/expr.c.o
 
 .PHONY : src/expr.o
@@ -259,6 +286,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... lab_04"
+	@echo "... src/arr.o"
+	@echo "... src/arr.i"
+	@echo "... src/arr.s"
 	@echo "... src/expr.o"
 	@echo "... src/expr.i"
 	@echo "... src/expr.s"

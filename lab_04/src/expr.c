@@ -13,13 +13,14 @@ int check_operation(char ch)
 int read_expression(expression_t *expression)
 {
     puts("\n  Введите выражение в следующем формате без пробелов: число|знак|число...|знак|число"
-         "\nДоступные операции: + - * /\n");
+         "\n  Доступные операции: + - * /\n");
 
     char sym;
     int rc;
     int i = 0;
 
-    // Здесь был scanf();
+    printf("  ");
+    scanf("%c", &sym);
 
     while (((rc = scanf("%c", &sym)) == 1) && (sym != '\n'))
     {
@@ -28,6 +29,7 @@ int read_expression(expression_t *expression)
             if (!check_operation(sym))
             {
                 puts("  Неверный символ в выражении");
+                setbuf(stdin, NULL);
                 return WRONG_SYMBOL;
             }
         }
@@ -37,6 +39,7 @@ int read_expression(expression_t *expression)
             if ((expression -> sym[i - 1] == '+') || (expression -> sym[i - 1] == '-'))
             {
                 puts("  Не может быть введено несколько знаков подряд");
+                setbuf(stdin, NULL);
                 return WRONG_SYMBOL;
             }
         }
@@ -77,4 +80,32 @@ int translate_operation(char ch)
         return 3;
 
     return 4;
+}
+
+int check_priority(int ch)
+{
+    if (ch == 1 || ch == 2)
+        return 1;
+
+    return 2;
+}
+
+int read_num_from_arr_char(char *ch, int *ind)
+{
+    char num[150];
+    int i = 0;
+
+    while (ch[*ind] >= '0' && ch[*ind] <= '9')
+    {
+        num[i] = ch[*ind];
+        i++;
+        *ind += 1;
+    }
+
+    num[i] = '\0';
+
+    int number;
+    sscanf(num, "%d", &number);
+
+    return number;
 }

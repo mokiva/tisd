@@ -3,6 +3,4 @@
 
 void print_menu(void);
 
-
-
 #endif // __TEXT_H__

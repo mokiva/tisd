@@ -34,6 +34,23 @@ int push_node(list_t **list, int num)
     return SUCCESS;
 }
 
+int pop_list(list_t **list)
+{
+    if (!*list)
+    {
+        puts("\n  Стек пуст");
+        return EMPTY_STACK;
+    }
+
+    list_t *tmp = (*list)->next;
+
+    free(*list);
+
+    *list = tmp;
+
+    return SUCCESS;
+}
+
 int add_elem_stack_list(list_t **list, int *max_len)
 {
     if (*max_len == 0)
@@ -151,7 +168,10 @@ int pop_elem_stack_list(list_t **list)
 void print_list(list_t *list)
 {
     if (!list)
+    {
         puts("\n  Стек пуст");
+        return;
+    }
 
     puts("\n  Стек в виде списка");
 
@@ -182,9 +202,46 @@ void print_addresses(array_clear_t arr)
         printf("  %p\n", (void*) arr.arr_clear[i]);
 }
 
+void count_operation_list(list_t **num_stack, list_t **sign_stack)
+{
+    int num1 = top_list(*num_stack);
+    pop_list(num_stack);
+
+    int num2 = top_list(*num_stack);
+    pop_list(num_stack);
+
+    int sign_op = top_list(*sign_stack);
+    pop_list(sign_stack);
+
+    int result;
+
+    if (sign_op == 1)
+        result = num2 + num1;
+
+    if (sign_op == 2)
+        result = num2 - num1;
+
+    if (sign_op == 3)
+        result = num2 * num1;
+
+    if (sign_op == 4)
+        result = (int) (num2 / num1);
+
+    if (!check_stack(*num_stack))
+        *num_stack = create_node(result);
+
+    else
+        push_node(num_stack, result);
+}
+
 int check_stack(list_t *list)
 {
     return (!list) ? EMPTY : NOT_EMPTY;
+}
+
+int top_list(list_t *list)
+{
+    return (list -> num);
 }
 
 int calculate_expression(expression_t expression)
@@ -206,58 +263,39 @@ int calculate_expression(expression_t expression)
                 int level_cur = check_priority(sign);
                 int level_prev = check_priority(top_list(sym_stack));
 
-                if (level_cur > level_prev) // if priority is higher
+                if (level_cur > level_prev)
+                    push_node(&sym_stack, sign);
+
+                if (level_cur <= level_prev)
                 {
-                    LOG_DEBUG("PUSH IT: c = %d, p = %d", level_cur, level_prev);
-                    push_node(&sym_stack, sign); // push in stack
-                }
-                else if (level_cur <= level_prev)// if priority is equal or lower
-                {
-                    count_operation_list(&num_stack, &sym_stack); // take 2 nums from stack and prev sign -> result in num_stack
+                    count_operation_list(&num_stack, &sym_stack);
                     i--;
                 }
             }
-        } // end sign parse
+        }
         else
         {
-            //printf("\n###in num parse###\n");
-            int num = read_num_from_arr_char(exp.sym, &i); // get num from stack
+            int num = read_num_from_arr_char(expression.sym, &i);
             i -= 1;
 
-            //printf("\nnum = %d\n", num);
-
-            if (!check_clear_stack_list(num_stack))
-            {
+            if (!check_stack(num_stack))
                 num_stack = create_node(num);
-            }
+
             else
-            {
                 push_node(&num_stack, num);
-            }
 
-            if (i + 1 == exp.len)
+            if (i + 1 == expression.len)
             {
-                while (check_clear_stack_list(sym_stack)) // if operations are left after loop
-                {
+                while (check_stack(sym_stack))
                     count_operation_list(&num_stack, &sym_stack);
-                }
             }
-        } // end num parse
-
-        // puts("Stack nums now");
-        // print_list(num_stack);
-
-
-        // puts("Stack sign now");
-        // print_list(sym_stack);
-
-        // puts("");
+        }
     }
 
     return top_list(num_stack);
 }
 
-int expression_result(int *result)
+int expression_result_list(int *result)
 {
     expression_t expression;
 

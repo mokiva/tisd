@@ -7,6 +7,8 @@ list_t* create_node(int num);
 
 int push_node(list_t **list, int num);
 
+int pop_list(list_t **list);
+
 int add_elem_stack_list(list_t **list, int *max_len);
 
 void clear_address(array_clear_t *arr, int ind);
@@ -21,8 +23,14 @@ void print_list(list_t *list);
 
 void print_addresses(array_clear_t arr);
 
+void count_operation_list(list_t **num_stack, list_t **sign_stack);
+
+int check_stack(list_t *list);
+
+int top_list(list_t *list);
+
 int calculate_expression(expression_t expression);
 
-int expression_result(int *result);
+int expression_result_list(int *result);
 
 #endif // __LIST_H__

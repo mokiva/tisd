@@ -4,13 +4,16 @@
 #include "text.h"
 #include "adt.h"
 #include "list.h"
+#include "arr.h"
 
 int main(void)
 {
     int option = -1;
 
     list_t *stack_list = NULL;
+    array_t stack_arr = {.arr = NULL, .len = 0};
     int max_stack_list_len = 0;
+    int max_stack_arr_len = 0;
     array_clear_t clear_arr = { .len = 0 };
 
     while (option != 0)
@@ -57,9 +60,35 @@ int main(void)
         {
             int result;
 
-            if (!expression_result(&result))
-                ;
+            if (!expression_result_list(&result))
+                printf("\n  Результат вычисления выражения: %d", result);
         }
+
+        if (option == 6)
+        {
+            if (!add_elem_arr(&stack_arr, &max_stack_arr_len))
+                puts("\n  Элемент успешно добавлен");
+        }
+
+        if (option == 7)
+        {
+            if (!pop_arr(&stack_arr))
+                puts("\n  Элемент удален");
+        }
+
+        if (option == 8)
+            print_arr(&stack_arr);
+
+        if (option == 9)
+        {
+            int result;
+
+            if(!expression_result_arr(&result))
+                printf("\n  Результат вычисления выражения: %d", result);
+
+        }
+
+        if (option == 10)
     }
 
     // free elems;

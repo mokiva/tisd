@@ -11,8 +11,10 @@ add_executable(lab_04
         inc/adt.h
         inc/list.h
         inc/expr.h
+        inc/arr.h
 
         src/main.c
         src/text.c
         src/list.c
-        src/expr.c)
+        src/expr.c
+        src/arr.c)

@@ -4,6 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
+  "/home/rikusha/tisd/lab_04/src/arr.c" "/home/rikusha/tisd/lab_04/cmake-build-debug/CMakeFiles/lab_04.dir/src/arr.c.o"
   "/home/rikusha/tisd/lab_04/src/expr.c" "/home/rikusha/tisd/lab_04/cmake-build-debug/CMakeFiles/lab_04.dir/src/expr.c.o"
   "/home/rikusha/tisd/lab_04/src/list.c" "/home/rikusha/tisd/lab_04/cmake-build-debug/CMakeFiles/lab_04.dir/src/list.c.o"
   "/home/rikusha/tisd/lab_04/src/main.c" "/home/rikusha/tisd/lab_04/cmake-build-debug/CMakeFiles/lab_04.dir/src/main.c.o"

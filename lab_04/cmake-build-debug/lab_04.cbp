@@ -81,6 +81,9 @@
 		<Unit filename="/home/rikusha/tisd/lab_04/inc/adt.h">
 			<Option target="lab_04"/>
 		</Unit>
+		<Unit filename="/home/rikusha/tisd/lab_04/inc/arr.h">
+			<Option target="lab_04"/>
+		</Unit>
 		<Unit filename="/home/rikusha/tisd/lab_04/inc/defs.h">
 			<Option target="lab_04"/>
 		</Unit>
@@ -91,6 +94,9 @@
 			<Option target="lab_04"/>
 		</Unit>
 		<Unit filename="/home/rikusha/tisd/lab_04/inc/text.h">
+			<Option target="lab_04"/>
+		</Unit>
+		<Unit filename="/home/rikusha/tisd/lab_04/src/arr.c">
 			<Option target="lab_04"/>
 		</Unit>
 		<Unit filename="/home/rikusha/tisd/lab_04/src/expr.c">
